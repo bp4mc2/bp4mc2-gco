@@ -1,0 +1,153 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix adms: <http://www.w3.org/ns/adms#>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix dcat: <http://www.w3.org/ns/dcat#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix dqv: <http://www.w3.org/ns/dqv#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dctype: <http://purl.org/dc/dcmitype/>.
+@prefix wdrs: <http://www.w3.org/2007/05/powder-s#>.
+@prefix skoslex: <http://bp4mc2.org/def/skos-lex#>.
+@prefix skosthes: <http://purl.org/iso25964/skos-thes#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix dcmiperiod:   <http://dublincore.org/documents/2006/04/10/dcmi-period/>.
+@prefix sd: <http://www.w3.org/ns/sparql-service-description#>.
+@prefix frbr: <http://purl.org/vocab/frbr/core#>.
+@prefix org: <http://www.w3.org/ns/org#>.
+@prefix dstype: <http://bp4mc2.org/def/dataset-type#>.
+
+@prefix catalogus: <http://catalogus.omgevingswet.overheid.nl/def/catalogus/>.
+@prefix catalogusbegrip: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/concept/>.
+
+#
+# Import
+#
+adms:Asset a rdfs:Class;
+  rdfs:subClassOf dcat:Dataset;
+.
+
+catalogus:Asset a sh:NodeShape;
+  sh:name "adms:Asset";
+  sh:targetClass adms:Asset;
+  sh:property catalogus:Dataset_label;
+  sh:property catalogus:Dataset_title;
+  sh:property catalogus:Dataset_description;
+  sh:property catalogus:Dataset_landingPage;
+  sh:property catalogus:Dataset_publisher;
+  sh:property catalogus:Dataset_type;
+  sh:property catalogus:Asset_dstype;
+.
+
+catalogus:WaardelijstAsset a sh:NodeShape;
+  sh:name "Waardelijst (adms:Asset)";
+  sh:property catalogus:Asset_ISA;
+.
+
+catalogus:WaardelijstAssetVersie a sh:NodeShape;
+  sh:name "Waardelijstversie (adms:Asset)";
+  sh:property catalogus:Asset_ISA;
+  sh:property catalogus:Dataset_versionInfo;
+  sh:property catalogus:Dataset_versionNotes;
+  sh:property catalogus:WaardelijstAssetVersie_isVersionOf;
+.
+
+catalogus:Asset_ISA a sh:PropertyShape;
+  sh:name "ISA";
+  sh:path rdf:type;
+  sh:hasValue adms:Asset;
+.
+
+catalogus:WaardelijstAssetVersie_isVersionOf a sh:PropertyShape;
+  sh:name "dct:isVersionOf";
+  sh:path dct:isVersionOf;
+  sh:node catalogus:WaardelijstAsset;
+.
+
+# ==========
+#
+# Overgenomen uit de catalogus-shapes (bestaande)
+#
+# ==========
+
+catalogus:Document a sh:NodeShape;
+  sh:name "foaf:Document";
+  sh:targetClass foaf:Document;
+  dct:subject catalogusbegrip:Document;
+.
+
+catalogus:Organization a sh:NodeShape;
+  sh:name "org:Organization";
+  sh:targetClass org:Organization;
+  dct:subject catalogusbegrip:Organisatie;
+.
+
+catalogus:Dataset_description a sh:PropertyShape;
+  sh:name "dct:description";
+  sh:path dct:description;
+  dct:subject catalogusbegrip:Beschrijving;
+  sh:datatype xsd:string;
+  sh:maxCount 1;
+.
+catalogus:Dataset_label a sh:PropertyShape;
+  sh:order 0;
+  sh:name "rdfs:label";
+  sh:path rdfs:label;
+  dct:subject catalogusbegrip:Label;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Dataset_landingPage a sh:PropertyShape;
+  sh:order 15;
+  sh:name "dcat:landingPage";
+  sh:path dcat:landingPage;
+  dct:subject catalogusbegrip:Website;
+  sh:class foaf:Document;
+.
+catalogus:Dataset_publisher a sh:PropertyShape;
+  sh:order 116;
+  sh:name "dct:publisher";
+  sh:path dct:publisher;
+  dct:subject catalogusbegrip:Publicist;
+  sh:nodeKind sh:IRI;
+  sh:class org:Organization;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Dataset_title a sh:PropertyShape;
+  sh:order 8;
+  sh:name "dct:title";
+  sh:path dct:title;
+  dct:subject catalogusbegrip:Titel;
+  sh:datatype xsd:string;
+  sh:maxCount 1;
+.
+catalogus:Dataset_type a sh:PropertyShape;
+  sh:order 1;
+  sh:name "rdf:type";
+  sh:path rdf:type;
+  dct:subject catalogusbegrip:Type;
+  sh:nodeKind sh:IRI;
+  sh:minCount 1;
+.
+catalogus:Dataset_versionInfo a sh:PropertyShape;
+  sh:order 308;
+  sh:name "owl:versionInfo";
+  sh:path owl:versionInfo;
+  dct:subject catalogusbegrip:VersieInformatie;
+  sh:datatype xsd:string;
+  sh:maxCount 1;
+.
+catalogus:Dataset_versionNotes a sh:PropertyShape;
+  sh:order 309;
+  sh:name "adms:versionNotes";
+  sh:path adms:versionNotes;
+  dct:subject catalogusbegrip:VersieNotities;
+  sh:datatype xsd:string;
+  sh:maxCount 1;
+.

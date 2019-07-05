@@ -1,0 +1,655 @@
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+@prefix conceptschema: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/conceptschema/>.
+@prefix catalogusbegrip: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/concept/>.
+@prefix cataloguscollectie: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/collectie/>.
+
+#
+# Conceptschema
+#
+conceptschema:Catalogus a skos:ConceptScheme;
+  rdfs:label "Catalogus begrippenstelsel"@nl;
+  skos:prefLabel "Catalogus begrippenstelsel"@nl;
+  skos:definition "Het begrippenstelsel met begrippen over de DSO Stelselcatalogus"@nl;
+.
+
+#
+# Collectie van semantische relaties
+#
+cataloguscollectie:SemantischeRelaties a skos:Collection;
+  rdfs:label "Semantische relaties"@nl;
+  skos:definition "De collectie van alle semantische relaties"@nl;
+  skos:member catalogusbegrip:SemantischeRelatie;
+  skos:member catalogusbegrip:SpecialisatieVan;
+  skos:member catalogusbegrip:OnderdeelVan;
+  skos:member catalogusbegrip:GeneralisatieVan;
+  skos:member catalogusbegrip:Omvat;
+  skos:member catalogusbegrip:Gerelateerd;
+  skos:member catalogusbegrip:Harmonisatierelatie;
+  skos:member catalogusbegrip:OvereenkomstigGenerieker;
+  skos:member catalogusbegrip:VrijwelOvereenkomstig;
+  skos:member catalogusbegrip:ExactOvereenkomstig;
+  skos:member catalogusbegrip:OvereenkomstigSpecifieker;
+  skos:member catalogusbegrip:OvereenkomstigVerwant;
+.
+
+#
+# Concepten die classificeren
+#
+
+catalogusbegrip:Brondocument a skos:Concept;
+  # Nu wordt nog verwezen naar dcmitype:Text, maar beter zou zijn dat dit naar dct:BibliographicResource gaat
+  rdfs:label "Bibliographic Resource"@en;
+  rdfs:label "Brondocument"@nl;
+  skos:definition "A resource consisting primarily of words for reading."@en;
+  skos:definition "Een Brondocument is een boek, een artikel of enig ander documentair object"@nl;
+  dct:source <http://www.dublincore.org/specifications/dublin-core/dcmi-terms/#terms-BibliographicResource>;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Catalogus a skos:Concept;
+  dct:source <http://www.w3.org/ns/dcat#Catalog>;
+  rdfs:label "Catalog"@en;
+  rdfs:label "Catalogus"@nl;
+  skos:definition "A curated collection of metadata about datasets"@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Collectie a skos:Concept;
+  dct:source skos:Collection;
+  rdfs:label "Collection"@en;
+  rdfs:label "Collectie"@nl;
+  skos:definition "A meaningful collection of concepts."@en;
+  skos:definition "Een collectie is een verzameling van concepten die voor een bepaalde situatie betekenisvol bij elkaar passen."@nl;
+  skos:scopeNote "Met betekenisvol wordt bedoeld dat de concepten op een bepaalde manier met elkaar samenhangen. Een collectie betreft vaak een deel van de concepten uit één conceptschema, maar kan ook concepten bevatten die afkomstig zijn uit meerdere conceptenschema's"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Concept a skos:Concept;
+  dct:source skos:Concept;
+  rdfs:label "Concept"@en;
+  rdfs:label "Concept"@nl;
+  skos:definition "An idea or notion; a unit of thought."@en;
+  skos:definition "Een concept is een idee of notie; een eenheid van gedachte, waarover wordt gecommuniceerd."@nl;
+  skos:scopeNote "Met een concept beschrijven we de algemeen afgesproken betekenis van een term binnen één context. In die zin is een concept datgene van een gedachte dat we met elkaar overeen zijn gekomen. Een concept is dus niet zo maar een gedachte, maar juist het resultaat van een afspraak."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Conceptschema a skos:Concept;
+  dct:source skos:ConceptScheme;
+  rdfs:label "Concept Scheme"@en;
+  rdfs:label "Conceptschema"@nl;
+  skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en;
+  skos:definition "Een conceptschema is een verzameling van concepten, inclusief eventuele semantische relaties tussen deze concepten."@nl;
+  skos:scopeNote "Een conceptschema betreft de concepten die relevant zijn binnen één context."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Dataset a skos:Concept;
+  dct:source <http://www.w3.org/ns/dcat#Dataset>;
+  rdfs:label "Dataset"@en;
+  rdfs:label "Dataset"@nl;
+  skos:definition "A collection of data, published or curated by a single source, and available for access or download in one or more formats"@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Distributie a skos:Concept;
+  dct:source <http://www.w3.org/ns/dcat#Distribution>;
+  rdfs:label "Distribution"@en;
+  rdfs:label "Distributie"@nl;
+  skos:definition "Represents a specific available form of a dataset. Each dataset might be available in different forms, these forms might represent different formats of the dataset or different endpoints. Examples of distributions include a downloadable CSV file, an API or an RSS feed"@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Document a skos:Concept;
+  dct:source <http://xmlns.com/foaf/0.1/Document>;
+  rdfs:label "Document"@en;
+  rdfs:label "Document"@nl;
+  skos:definition "A document."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:ExternConcept a skos:Concept;
+  rdfs:label "Extern concept"@nl;
+  skos:inScheme conceptschema:ExternConcept;
+  skos:broader catalogusbegrip:Concept;
+.
+
+catalogusbegrip:GerelateerdConcept a skos:Concept;
+  rdfs:label "Gerelateerd concept"@nl;
+  skos:inScheme conceptschema:Catalogus;
+  skos:broader catalogusbegrip:Concept;
+.
+
+catalogusbegrip:Object a skos:Concept;
+  dct:source <https://www.w3.org/TR/rdf-schema/#ch_resource>;
+  rdfs:label "Resource"@en;
+  rdfs:label "Object"@nl;
+  skos:definition "The class resource, everything."@en;
+  skos:definition "Een object is een aanwijsbaar en telbaar onderdeel binnen een context"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+catalogusbegrip:Periode a skos:Concept;
+  dct:source <http://www.dublincore.org/specifications/dublin-core/dcmi-period>;
+  rdfs:label "Period"@en;
+  rdfs:label "Periode"@nl;
+  skos:definition "A single time interval. If either start or end is absent, then this implies an interval unbounded on that side."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Persoon a skos:Concept;
+  dct:source <http://www.w3.org/ns/prov#Person>;
+  rdfs:label "Person"@en;
+  rdfs:label "Persoon"@nl;
+  skos:definition "Person agents are people."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Organisatie a skos:Concept;
+    dct:source <http://www.w3.org/ns/org#Organization>;
+    rdfs:label "Organization"@en;
+    rdfs:label "Organisatie"@nl;
+    skos:definition "Represents a collection of people organized together into a community or other social, commercial or political structure. The group has some common purpose or reason for existence which goes beyond the set of people belonging to it and can act as an Agent. Organizations are often decomposable into hierarchical structures.  It is recommended that SKOS lexical labels should be used to label the Organization. In particular `skos:prefLabel` for the primary (possibly legally recognized name), `skos:altLabel` for alternative names (trading names, colloquial names) and `skos:notation` to denote a code from a code list. Alternative names: _Collective_ _Body_ _Org_ _Group_"@en;
+    skos:inScheme conceptschema:Catalogus;
+.
+
+#
+# Begrippen die eigenschappen voorstellen
+#
+
+catalogusbegrip:AlternatieveTerm a skos:Concept;
+    dct:source skos:altLabel;
+    rdfs:label "alternative label"@en;
+    rdfs:label "alternatieve term"@nl;
+    skos:definition "An alternative lexical label for a resource."@en;
+    skos:definition "Een alternatieve term voor een concept is een term die gebruikt kan worden als alternatief voor de voorkeursterm van dit concept, maar niet de voorkeur heeft."@nl;
+    skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Begindatum a skos:Concept;
+  dct:source <http://www.dublincore.org/specifications/dublin-core/dcmi-period>;
+  rdfs:label "start"@en;
+  rdfs:label "begindatum"@nl;
+  skos:definition "The instant corresponding to the commencement of the time interval"@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:BehoortTot a skos:Concept;
+  dct:source skos:inScheme;
+  rdfs:label "is in scheme"@en;
+  rdfs:label "behoort tot"@nl;
+  skos:definition "Relates a resource (for example a concept) to a concept scheme in which it is included."@en;
+  skos:definition "Relateert een concept tot het conceptschema waartoe het behoort"@nl;
+  skos:scopeNote "Volgens de specificatie kan een concept tot meerdere conceptschema's behoren. Praktisch gezien kan dit slechts als sprake is van conceptschema's waarvan de contexten overlappen"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Beschrijving a skos:Concept;
+  dct:source dct:description;
+  rdfs:label "Description"@en;
+  rdfs:label "beschrijving"@nl;
+  skos:definition "An account of the resource."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Bevat a skos:Concept;
+  dct:source skos:member;
+  rdfs:label "has member"@en;
+  rdfs:label "bevat"@nl;
+  skos:definition "Relates a collection to one of its members."@en;
+  skos:definition "Relateert een collectie aan een concept dat onderdeel is van deze collectie"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Bron a skos:Concept;
+  dct:source dct:source;
+  rdfs:label "Source"@en;
+  rdfs:label "bron"@nl;
+  skos:definition "A related resource from which the described resource is derived."@en;
+  skos:definition "Een bron voor een concept is een gerelateerde brondocument waaruit de betekenis van het concept is afgeleid."@nl;
+  skos:scopeNote "Een document kan zowel de bron voor de betekenis van een concept als voor de gebruikte term, definitie en andere onderdelen van de beschrijving"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Code a skos:Concept;
+  dct:source skos:notation;
+  rdfs:label "notation"@en;
+  rdfs:label "code"@nl;
+  skos:definition '''A notation, also known as classification code, is a string of characters such as "T58.5" or "303.4833" used to uniquely identify a concept within the scope of a given concept scheme.'''@en;
+  skos:definition "Een code voor een concept is een tekenreeks ter aanduiding van precies één concept uit een begrippenstelsel."@nl;
+  skos:scopeNote "Meerdere codes kunnen worden aangebracht die worden onderscheiden op basis van het datatype, als referentie naar het coderingsstelsel waaruit de specifieke code afkomstig is."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Definitie a skos:Concept;
+  dct:source skos:definition;
+  rdfs:label "definition"@en;
+  rdfs:label "definitie"@nl;
+  skos:definition "A statement or formal explanation of the meaning of a concept."@en;
+  skos:definition "Een definitie van een concept is een tekstuele beschrijving van de betekenis van dit concept waarmee het concept kan worden onderscheiden van andere concepten."@nl;
+  skos:scopeNote "De definitie dient te voldoen aan specifieke formuleringsregels voor definitie en dient in een voor mensen leesbare taal te begrijpen zijn. In dit laatste onderscheid de definitie zich daarmee van een machine-leesbare formele specificatie."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Doorhaaltijdstip a skos:Concept;
+  dct:source <http://www.w3.org/ns/prov#invalidatedAtTime>;
+  rdfs:label "invalidatedAtTime"@en;
+  rdfs:label "doorhaaltijdstip"@nl;
+  skos:definition "The time at which an entity was invalidated (i.e., no longer usable)."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:DownloadURL a skos:Concept;
+  dct:source <http://www.w3.org/ns/dcat#downloadURL>;
+  rdfs:label "download URL"@en;
+  rdfs:label "download-URL"@nl;
+  skos:definition "This is a direct link to a downloadable file in a given format. E.g. CSV file or RDF file. The format is described by the distribution's dc:format and/or dcat:mediaType"@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Einddatum a skos:Concept;
+  dct:source <http://www.dublincore.org/specifications/dublin-core/dcmi-period>;
+  rdfs:label "end"@en;
+  rdfs:label "einddatum"@nl;
+  skos:definition "The instant corresponding to the termination of the time interval"@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Emailadres a skos:Concept;
+  dct:source <http://xmlns.com/foaf/0.1/mbox>;
+  rdfs:label "personal mailbox"@en;
+  rdfs:label "emailadres"@nl;
+  skos:definition "A  personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that  there is (across time and change) at most one individual that ever has any particular value for foaf:mbox."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:ExactOvereenkomstig a skos:Concept;
+  dct:source skos:exactMatch;
+  rdfs:label "has exact match"@en;
+  rdfs:label "exact overeenkomstig"@nl;
+  skos:definition "skos:exactMatch is used to link two concepts, indicating a high degree of confidence that the concepts can be used interchangeably across a wide range of information retrieval applications. skos:exactMatch is a transitive property, and is a sub-property of skos:closeMatch."@en;
+  skos:definition "Relateert een concept aan een overeenkomstig concept uit een ander conceptschema, waarbij de betekenis van deze concepten bij uiteenlopende toepassingen gelijk aan elkaar kan worden verondersteld"@nl;
+  skos:scopeNote "Een dergelijke relatie is aanwezig als de betekenis van het betreffende concept gelijk wordt verondersteld aan het concept uit het andere conceptschema. Het is een 'leenwoord': het concept is overgenomen uit het andere conceptschema."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Geldigheid a skos:Concept;
+  dct:source dct:temporal;
+  rdfs:label "Temporal Coverage"@en;
+  rdfs:label "geldigheid"@nl;
+  skos:definition "Temporal characteristics of the resource."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:GeneralisatieVan a skos:Concept;
+  dct:source <http://purl.org/iso25964/skos-thes#narrowerGeneric>;
+  rdfs:label "narrower term (generic)"@en;
+  rdfs:label "generalisatie van"@nl;
+  skos:definition "The immediate (direct or one-step) class - specialized class relationship."@en;
+  skos:definition "Relateert een begrip aan een meer specifieker begrip"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:GeografischeAfbakening a skos:Concept;
+  dct:source dct:spatial;
+  rdfs:label "Spatial Coverage"@en;
+  rdfs:label "geografische afbakening"@nl;
+  skos:definition "Spatial characteristics of the resource."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Gerelateerd a skos:Concept;
+  dct:source skos:related;
+  rdfs:label "has related"@en;
+  rdfs:label "gerelateerd"@nl;
+  skos:definition "Relates a concept to a concept with which there is an associative semantic relationship."@en;
+  skos:definition "Relateert een concept aan een andere concept waarmee het semantisch samenhangt"@nl;
+  skos:scopeNote "Het concept is voor zijn betekenis afhankelijk van de betekenis van het andere concept. Dit betekent dat in de definitie van eerstgenoemde concept het andere concept wordt gebruikt."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:GerelateerdObject a skos:Concept;
+  dct:source dct:relation;
+  rdfs:label "Relation"@en;
+  rdfs:label "gerelateerd object"@nl;
+  skos:definition "A related resource."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Harmonisatierelatie a skos:Concept;
+  dct:source skos:mappingRelation;
+  rdfs:label "is in mapping relation with"@en;
+  rdfs:label "harmonisatierelatie"@nl;
+  skos:definition "Relates two concepts coming, by convention, from different schemes, and that have comparable meanings"@en;
+  skos:definition "Relateert een concept aan een overeenkomstig concept uit een ander conceptschema, op basis van de betekenis."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Identificatienummer a skos:Concept;
+  dct:source <http://www.w3.org/ns/org#identifier>;
+  rdfs:label "identifier"@en;
+  rdfs:label "identificatienummer"@nl;
+  skos:definition "Gives an identifier, such as a company registration number, that can be used to used to uniquely identify the organization. Many different national and international identier schemes are available. The org ontology is neutral to which schemes are used. The particular identifier scheme should be indicated by the datatype of the identifier value.  Using datatypes to distinguish the notation scheme used is consistent with recommended best practice for `skos:notation` of which this property is a specialization."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Label a skos:Concept;
+  dct:source rdfs:label;
+  rdfs:label "label"@en;
+  rdfs:label "label"@nl;
+  skos:definition "A human-readable name for the subject."@en;
+  skos:definition "Een label voor een object is een voor mensen leesbare naam ter aanduiding van een object."@nl;
+  skos:scopeNote "Elk onderdeel uit de Catalogus heeft een label. Het is de meest algemene naam voor het onderdeel, zonder dat enige andere context wordt verondersteld. Specifieke onderdelen kunnen meer specifiekere namen hebben, zoals de voorkeursterm bij een concept of een titel bij een document."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Licentie a skos:Concept;
+  dct:source dct:license;
+  rdfs:label "License"@en;
+  rdfs:label "licentie"@nl;
+  skos:definition "A legal document giving official permission to do something with the resource."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Metadata a skos:Concept;
+  dct:source <http://xmlns.com/foaf/0.1/isPrimaryTopicOf>;
+  rdfs:label "is primary topic of"@en;
+  rdfs:label "metadata"@nl;
+  skos:definition "A document that this thing is the primary topic of."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Omvat a skos:Concept;
+  dct:source <http://purl.org/iso25964/skos-thes#narrowerPartitive>;
+  rdfs:label "narrower term (partitive)"@en;
+  rdfs:label "omvat"@nl;
+  skos:definition "Definition: ISO 25964-1: NTP"@en;
+  skos:definition "Relateert een concept aan een minder omvattend concept. Voorbeelden van eerstgenoemde concept zullen bestaan uit voorbeelden van het minder omvattende concept zijn."@nl;
+  skos:scopeNote "Zo bestaat de Staten Generaal uit de 1e en 2e kamer. Het gaat hier om de betekenisvolle relatie, waarbij een geheel wordt beschreven en termen van haar delen. Het is dan ook de bedoeling om ALLE betekenisvolle delen te vermelden, en ook alleen maar betekenisvolle delen. Zo is een fiets zonder bel nog steeds een fiets (dus niet betekenisvol), terwijl een dergelijke bestaat-uit relatie wel betekenisvol is in het geval van 'een fiets die de openbare weg op mag'"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:OnderdeelVan a skos:Concept;
+  dct:source <http://purl.org/iso25964/skos-thes#broaderPartitive>;
+  rdfs:label "broader term (partitive)"@en;
+  rdfs:label "onderdeel van"@nl;
+  skos:definition "Definition: ISO 25964-1: BTP"@en;
+  skos:definition "Relateert een concept aan een meer omvattend concept. Voorbeelden van eerstgenoemde concept zullen onderdeel van voorbeelden van het meer omvattende concept zijn."@nl;
+  skos:scopeNote "Zo is een vliegtuigvleugel onderdeel van een vliegtuig, of een automotor onderdeel van een auto. Het gaat hier om de betekenisvolle relatie. Zo is een wiel niet per sé onderdeel van een fiets, dus zal een dergelijke is-onderdeel-van relatie dan niet worden toegepast."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:OvereenkomstigGenerieker a skos:Concept;
+  dct:source skos:broadMatch;
+  rdfs:label "has broader match"@en;
+  rdfs:label "overeenkomstig generieker"@nl;
+  skos:definition "skos:broadMatch is used to state a hierarchical mapping link between two conceptual resources in different concept schemes."@en;
+  skos:definition "Relateert een concept aan een generieker concept uit een ander conceptschema"@nl;
+  skos:scopeNote "Een dergelijke relatie is aanwezig als de betekenis van het betreffende concept tot stand is gekomen op basis van kennis over het concept uit het andere conceptschema"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:OvereenkomstigSpecifieker a skos:Concept;
+  dct:source skos:narrowMatch;
+  rdfs:label "has narrower match"@en;
+  rdfs:label "overeenkomstig specifieker"@nl;
+  skos:definition "skos:narrowMatch is used to state a hierarchical mapping link between two conceptual resources in different concept schemes."@en;
+  skos:definition "Relateert een concept aan een specifieker concept uit een ander conceptschema"@nl;
+  skos:scopeNote "Een dergelijke relatie is aanwezig als de betekenis van het betreffende concept tot stand is gekomen op basis van kennis over het concept uit het andere conceptschema"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:OvereenkomstigVerwant a skos:Concept;
+  dct:source skos:relatedMatch;
+  rdfs:label "has related match"@en;
+  rdfs:label "overeenkomstig verwant"@nl;
+  skos:definition "skos:relatedMatch is used to state an associative mapping link between two conceptual resources in different concept schemes."@en;
+  skos:definition "Relateert een concept aan een verwant concept uit een ander conceptschema"@nl;
+  skos:scopeNote "Een dergelijke relatie is aanwezig als de betekenis van het betreffende concept tot stand is gekomen op basis van kennis over het concept uit het andere conceptschema"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Publicist a skos:Concept;
+  dct:source dct:publisher;
+  rdfs:label "Publisher"@en;
+  rdfs:label "publicist"@nl;
+  skos:definition "An entity responsible for making the resource available."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Rationale a skos:Concept;
+  dct:source skos:editorialNote;
+  rdfs:label "editorial note"@en;
+  rdfs:label "rationale"@nl;
+  skos:definition "A note for an editor, translator or maintainer of the vocabulary."@en;
+  skos:definition "Een rationale voor een begrip is een notitie voor de redacteur, vertaler of beheerder van het begrippenkader."@nl;
+  skos:scopeNote "De rationale geeft aan hoe de beschrijving van het begrip tot stand is gekomen, en waarom bepaalde keuzes zijn gemaakt."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Rechten a skos:Concept;
+  dct:source dct:rights;
+  rdfs:label "Rights"@en;
+  rdfs:label "rechten"@nl;
+  skos:definition "Information about rights held in and over the resource."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Registratietijdstip a skos:Concept;
+  dct:source <http://www.w3.org/ns/prov#generatedAtTime>;
+  rdfs:label "generatedAtTime"@en;
+  rdfs:label "registratietijdstip"@nl;
+  skos:definition "The time at which an entity was completely created and is available for use."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:RevisieVan a skos:Concept;
+  dct:source <http://www.w3.org/ns/prov#wasRevisionOf>;
+  rdfs:label "wasRevisionOf"@en;
+  rdfs:label "revisie van"@nl;
+  skos:definition "A revision is a derivation that revises an entity into a revised version."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:SemantischeRelatie a skos:Concept;
+  dct:source skos:semanticRelation;
+  rdfs:label "is in semantic relation with"@en;
+  rdfs:label "semantische relatie"@nl;
+  skos:definition "Links a concept to a concept related by meaning."@en;
+  skos:definition "Relateert een begrip aan een ander begrip op basis van de betekenis."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:SpecialisatieVan a skos:Concept;
+  dct:source <http://purl.org/iso25964/skos-thes#broaderGeneric>;
+  rdfs:label "broader term (generic)"@en;
+  rdfs:label "specialisatie van"@nl;
+  skos:definition "Definition: ISO 25964-1: BTG The immediate (direct or one-step) class - generalized class relationship."@en;
+  skos:definition "Relateert een begrip aan een meer generieker begrip"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Status a skos:Concept;
+  dct:source <http://www.w3.org/ns/adms#status>;
+  rdfs:label "status"@en;
+  rdfs:label "status"@nl;
+  skos:definition "Links to the status of the Asset or Asset Distribution in the context of a particular workflow process. Since Status is defined using a skos:Concept, that is the defined range for this property."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Taal a skos:Concept;
+  dct:source dct:language;
+  rdfs:label "Language"@en;
+  rdfs:label "taal"@nl;
+  skos:definition "A language of the resource."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Tekstbron a skos:Concept;
+  dct:source dct:source;
+  rdfs:label "Source"@en;
+  rdfs:label "tekstbron"@nl;
+  skos:definition "A related resource from which the described resource is derived."@en;
+  skos:editorialNote "Deprecated. We gebruiken 'Bron' en niet 'Tekstbron'. Dit begrip niet gebruiken"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Titel a skos:Concept;
+  dct:source dct:title;
+  rdfs:label "Title"@en;
+  rdfs:label "titel"@nl;
+  skos:definition "A name given to the resource."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:ToegangsURL a skos:Concept;
+  dct:source <http://www.w3.org/ns/dcat#accessURL>;
+  rdfs:label "access URL"@en;
+  rdfs:label "toegangs-URL"@nl;
+  skos:definition "Could be any kind of URL that gives access to a distribution of the dataset. E.g. landing page, download, feed URL, SPARQL endpoint. Use when your catalog does not have information on which it is or when it is definitely not a download."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:ToegeschrevenAan a skos:Concept;
+  dct:source <http://www.w3.org/ns/prov#wasAttributedTo>;
+  rdfs:label "wasAttributedTo"@en;
+  rdfs:label "toegeschreven aan"@nl;
+  skos:definition "Attribution is the ascribing of an entity to an agent."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Toelichting a skos:Concept;
+  dct:source skos:scopeNote;
+  rdfs:label "scope note"@en;
+  rdfs:label "toelichting"@nl;
+  skos:definition "A note that helps to clarify the meaning and/or the use of a concept."@en;
+  skos:definition "Een toelichting voor een concept is een notitie die meer duidelijk geeft over de betekenis of gebruik van een concept"@nl;
+  skos:scopeNote "De toelichting geeft een aanvulling op de definitie waardoor deze beter begrepen kan worden, zonder dat daarmee de formele specificatie onnodig of onjuist wordt aangepast."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Trefwoord a skos:Concept;
+  dct:source <http://www.w3.org/ns/dcat#keyword>;
+  rdfs:label "keyword"@en;
+  rdfs:label "trefwoord"@nl;
+  skos:definition "A keyword or tag describing the dataset."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Type a skos:Concept;
+  dct:source rdf:type;
+  rdfs:label "type"@en;
+  rdfs:label "type"@nl;
+  skos:definition "The subject is an instance of a class."@en;
+  skos:definition "Een type van een object is een klasse waartoe het object volgens de definitie van die klasse behoort."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Uitleg a skos:Concept;
+  dct:source rdfs:comment;
+  rdfs:label "comment"@en;
+  rdfs:label "uitleg"@nl;
+  skos:definition "A description of the subject resource."@en;
+  skos:definition "Een uitleg van een concept is een beschrijving van dit concept in eenvoudige taal die zonder verdere context begrepen kan worden."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Verbeelding a skos:Concept;
+  dct:source <http://xmlns.com/foaf/0.1/depiction>;
+  rdfs:label "depiction"@en;
+  rdfs:label "Verbeelding"@nl;
+  skos:definition "A depiction of some thing."@en;
+  skos:definition "Een verbeelding van een object is een plaatje dat kan worden gebruikt om dit object aan te duiden."@nl;
+  skos:scopeNote "Een verbeelding van een concept betreft een afbeelding die uitdrukking geeft aan de betekenis van het concept."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:VersieInformatie a skos:Concept;
+  dct:source <http://www.w3.org/2002/07/owl#versionInfo>;
+  rdfs:label "versionInfo"@en;
+  rdfs:label "versie-informatie"@nl;
+  skos:definition "The annotation property that provides version information for an ontology or another OWL construct."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:VersieNotities a skos:Concept;
+  dct:source <http://www.w3.org/ns/adms#versionNotes>;
+  rdfs:label "version info"@en;
+  rdfs:label "versie-notities"@nl;
+  skos:definition "A description of changes between this version and the previous version of the Asset."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:VolledigeNaam a skos:Concept;
+  dct:source <http://xmlns.com/foaf/0.1/givenName>;
+  rdfs:label "Given name"@en;
+  rdfs:label "volledige naam"@nl;
+  skos:definition "The given name of some person."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Voorkeursterm a skos:Concept;
+  dct:source skos:prefLabel;
+  rdfs:label "preferred label"@en;
+  rdfs:label "voorkeursterm"@nl;
+  skos:definition "The preferred lexical label for a resource, in a given language."@en;
+  skos:definition "Een voorkeursterm voor een concept is de term die, in een specifieke taal, de voorkeur heeft om te gebruiken ter aanduiding van dit concept."@nl;
+  skos:scopeNote "Deze eigenschap gebruiken we alleen voor concepten. We leggen de voorkeursterm alleen vast in de voorkeurstaal (Nederlands). Voor alle andere talen gebruiken we de eigenschap Label."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Voorkomen a skos:Concept;
+  dct:source <http://www.w3.org/ns/prov#Entity>;
+  rdfs:label "Entity"@en;
+  rdfs:label "Voorkomen"@nl;
+  skos:definition "An entity is a physical, digital, conceptual, or other kind of thing with some fixed aspects; entities may be real or imaginary. "@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:VrijwelOvereenkomstig a skos:Concept;
+  dct:source skos:closeMatch;
+  rdfs:label "has close match"@en;
+  rdfs:label "vrijwel overeenkomstig"@nl;
+  skos:definition '''skos:closeMatch is used to link two concepts that are sufficiently similar that they can be used interchangeably in some information retrieval applications. In order to avoid the possibility of "compound errors" when combining mappings across more than two concept schemes, skos:closeMatch is not declared to be a transitive property.'''@en;
+  skos:definition "Relateert een concept aan een overeenkomstig concept uit een ander conceptschema, waarbij de betekenis van deze concepten bij enkele toepassingen gelijk aan elkaar kan worden verondersteld."@nl;
+  skos:scopeNote "Een dergelijke relatie is aanwezig als de betekenis van het betreffende concept vrijwel gelijk wordt verondersteld aan het concept uit het andere conceptschema. Het is een 'leenwoord': het concept is overgenomen uit het andere conceptschema, en daarbij enigszins in betekenis aangepast."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Webpagina a skos:Concept;
+  dct:source <http://xmlns.com/foaf/0.1/homepage>;
+  rdfs:label "homepage"@en;
+  rdfs:label "webpagina"@nl;
+  skos:definition "A homepage for some thing."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Website a skos:Concept;
+  dct:source <http://www.w3.org/ns/dcat#landingPage>;
+  rdfs:label "landing page"@en;
+  rdfs:label "website"@nl;
+  skos:definition "A Web page that can be navigated to in a Web browser to gain access to the dataset, its distributions and/or additional information."@en;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Wijzigingsnotitie a skos:Concept;
+  dct:source skos:changeNote;
+  rdfs:label "change note"@en;
+  rdfs:label "wijzigingsnotitie"@nl;
+  skos:definition "A note about a modification to a concept."@en;
+  skos:definition "Een wijzigingsnotitie is een notitie over de wijziging van de beschrijving van een concept"@nl;
+  skos:inScheme conceptschema:Catalogus;
+.
+
+catalogusbegrip:Zoekterm a skos:Concept;
+  dct:source skos:hiddenLabel;
+  rdfs:label "hidden label"@en;
+  rdfs:label "zoekterm"@nl;
+  skos:definition "A lexical label for a resource that should be hidden when generating visual displays of the resource, but should still be accessible to free text search operations."@en;
+  skos:definition "Een zoekterm voor een concept is een term die beoogd is om het concept te vinden, maar verder verborgen blijft."@nl;
+  skos:inScheme conceptschema:Catalogus;
+.

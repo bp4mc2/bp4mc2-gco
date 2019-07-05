@@ -1,0 +1,862 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix sd: <http://www.w3.org/ns/sparql-service-description#>.
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix dcat: <http://www.w3.org/ns/dcat#>.
+@prefix adms: <http://www.w3.org/ns/adms#>.
+@prefix org: <http://www.w3.org/ns/org#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix skosthes: <http://purl.org/iso25964/skos-thes#>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix dcmiperiod: <http://dublincore.org/documents/2006/04/10/dcmi-period/>.
+@prefix dcmitype: <http://purl.org/dc/dcmitype/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+@prefix catalogus: <http://catalogus.omgevingswet.overheid.nl/def/catalogus/>.
+@prefix catalogusbegrip: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/concept/>.
+
+#
+# NodeShapes
+#
+
+#
+# ADMS
+#
+catalogus:Asset a sh:NodeShape;
+  sh:name "adms:Asset";
+  sh:targetClass adms:Asset;
+  sh:property catalogus:Dataset_label;
+  sh:property catalogus:Dataset_title;
+  sh:property catalogus:Dataset_description;
+  sh:property catalogus:Dataset_landingPage;
+  sh:property catalogus:Dataset_publisher;
+  sh:property catalogus:Dataset_type;
+  sh:property catalogus:Asset_dstype;
+.
+catalogus:WaardelijstAsset a sh:NodeShape;
+  sh:name "Waardelijst (adms:Asset)";
+  sh:property catalogus:Asset_ISA;
+.
+catalogus:WaardelijstAssetVersie a sh:NodeShape;
+  sh:name "Waardelijstversie (adms:Asset)";
+  sh:property catalogus:Asset_ISA;
+  sh:property catalogus:Dataset_versionInfo;
+  sh:property catalogus:Dataset_versionNotes;
+  sh:property catalogus:WaardelijstAssetVersie_isVersionOf;
+.
+
+#
+# DCAT
+#
+catalogus:Catalog a sh:NodeShape;
+  sh:name "dcat:Catalog";
+  sh:targetClass dcat:Catalog;
+  dct:subject catalogusbegrip:Catalogus;
+  sh:property catalogus:Catalog_description;
+  sh:property catalogus:Catalog_homepage;
+  sh:property catalogus:Catalog_label;
+  sh:property catalogus:Catalog_title;
+  sh:property catalogus:Catalog_type;
+.
+catalogus:Dataset a sh:NodeShape;
+  sh:name "dcat:Dataset";
+  sh:targetClass dcat:Dataset;
+  dct:subject catalogusbegrip:Dataset;
+  sh:property catalogus:Dataset_description;
+  sh:property catalogus:Dataset_keyword;
+  sh:property catalogus:Dataset_label;
+  sh:property catalogus:Dataset_landingPage;
+  sh:property catalogus:Dataset_language;
+  sh:property catalogus:Dataset_publisher;
+  sh:property catalogus:Dataset_relation;
+  sh:property catalogus:Dataset_spatial;
+  sh:property catalogus:Dataset_title;
+  sh:property catalogus:Dataset_type;
+  sh:property catalogus:Dataset_versionInfo;
+  sh:property catalogus:Dataset_versionNotes;
+.
+catalogus:Distribution a sh:NodeShape;
+  sh:name "dcat:Distribution";
+  sh:targetClass dcat:Distribution;
+  dct:subject catalogusbegrip:Distributie;
+  sh:property catalogus:Distribution_accessURL;
+  sh:property catalogus:Distribution_downloadURL;
+  sh:property catalogus:Distribution_license;
+  sh:property catalogus:Distribution_rights;
+.
+
+#
+# DCMIPeriod
+#
+catalogus:Period a sh:NodeShape;
+  sh:name "Period";
+  dct:subject catalogusbegrip:Periode;
+  sh:property catalogus:Period_start;
+  sh:property catalogus:Period_end;
+.
+
+#
+# DCMIType
+#
+catalogus:Text a sh:NodeShape;
+  sh:name "dcmitype:Text";
+  sh:targetClass dcmitype:Text;
+  dct:subject catalogusbegrip:Brondocument;
+  sh:property catalogus:Text_title;
+  sh:property catalogus:Text_type;
+.
+
+#
+# FOAF
+#
+catalogus:Document a sh:NodeShape;
+  sh:name "foaf:Document";
+  sh:targetClass foaf:Document;
+  dct:subject catalogusbegrip:Document;
+.
+
+#
+# ORG
+#
+catalogus:Organization a sh:NodeShape;
+  sh:name "org:Organization";
+  sh:targetClass org:Organization;
+  dct:subject catalogusbegrip:Organisatie;
+  sh:property catalogus:Organization_identifier;
+  sh:property catalogus:Organization_label;
+  sh:property catalogus:Organization_prefLabel;
+  sh:property catalogus:Organization_type;
+.
+
+#
+# PROV
+#
+catalogus:Entity a sh:NodeShape;
+  sh:name "prov:Entity";
+  sh:targetClass prov:Entity;
+  dct:subject catalogusbegrip:Voorkomen;
+  sh:property catalogus:Entity_changeNote;
+  sh:property catalogus:Entity_generatedAtTime;
+  sh:property catalogus:Entity_invalidatedAtTime;
+  sh:property catalogus:Entity_status;
+  sh:property catalogus:Entity_temporal;
+  sh:property catalogus:Entity_wasAttributedTo;
+  sh:property catalogus:Entity_wasRevisionOf;
+.
+catalogus:Person a sh:NodeShape;
+  sh:name "prov:Person";
+  sh:targetClass prov:Person;
+  dct:subject catalogusbegrip:Persoon;
+  sh:property catalogus:Person_mbox;
+  sh:property catalogus:Person_givenName;
+.
+
+#
+# RDFS
+#
+catalogus:Resource a sh:NodeShape;
+  sh:name "rdfs:Resource";
+  sh:targetClass rdfs:Resource;
+  dct:subject catalogusbegrip:Object;
+  sh:property catalogus:Resource_isPrimaryTopicOf
+.
+
+#
+# SKOS
+#
+catalogus:Collection a sh:NodeShape;
+  sh:name "skos:Collection";
+  sh:targetClass skos:Collection;
+  dct:subject catalogusbegrip:Collectie;
+  sh:property catalogus:Collection_inScheme;
+  sh:property catalogus:Collection_label;
+  sh:property catalogus:Collection_member;
+  sh:property catalogus:Collection_prefLabel;
+  sh:property catalogus:Collection_type;
+.
+catalogus:Concept a sh:NodeShape;
+  sh:name "skos:Concept";
+  sh:targetClass skos:Concept;
+  dct:subject catalogusbegrip:Concept;
+  sh:property catalogus:Concept_altLabel;
+  sh:property catalogus:Concept_broaderGeneric;
+  sh:property catalogus:Concept_broaderPartitive;
+  sh:property catalogus:Concept_broadMatch;
+  sh:property catalogus:Concept_closeMatch;
+  sh:property catalogus:Concept_comment;
+  sh:property catalogus:Concept_definition;
+  sh:property catalogus:Concept_depiction;
+  sh:property catalogus:Concept_editorialNote;
+  sh:property catalogus:Concept_exactMatch;
+  sh:property catalogus:Concept_hiddenLabel;
+  sh:property catalogus:Concept_inScheme;
+  sh:property catalogus:Concept_label;
+  sh:property catalogus:Concept_mappingRelation;
+  sh:property catalogus:Concept_narrowerGeneric;
+  sh:property catalogus:Concept_narrowerPartitive;
+  sh:property catalogus:Concept_narrowMatch;
+  sh:property catalogus:Concept_notation;
+  sh:property catalogus:Concept_prefLabel;
+  sh:property catalogus:Concept_related;
+  sh:property catalogus:Concept_relatedMatch;
+  sh:property catalogus:Concept_scopeNote;
+  sh:property catalogus:Concept_semanticRelation;
+  sh:property catalogus:Concept_source;
+#  sh:property catalogus:Concept_sourcedc;
+  sh:property catalogus:Concept_type;
+.
+catalogus:ConceptScheme a sh:NodeShape;
+  sh:name "skos:ConceptScheme";
+  sh:targetClass skos:ConceptScheme;
+  dct:subject catalogusbegrip:Conceptschema;
+  sh:property catalogus:ConceptScheme_comment;
+  sh:property catalogus:ConceptScheme_label;
+  sh:property catalogus:ConceptScheme_type;
+.
+catalogus:ExternConcept a sh:NodeShape;
+  sh:name "skos:Concept (extern)";
+  dct:subject catalogusbegrip:ExternConcept;
+  sh:property catalogus:Concept_ISA;
+.
+catalogus:GerelateerdConcept a sh:NodeShape;
+  sh:name "skos:Concept (gerelateerd)";
+  dct:subject catalogusbegrip:GerelateerdConcept;
+  sh:property catalogus:Concept_ISA;
+.
+
+#
+# PropertyShapes
+#
+
+#
+# ADMS
+#
+
+catalogus:Asset_ISA a sh:PropertyShape;
+  sh:name "ISA";
+  sh:path rdf:type;
+  sh:hasValue adms:Asset;
+.
+
+catalogus:WaardelijstAssetVersie_isVersionOf a sh:PropertyShape;
+  sh:name "dct:isVersionOf";
+  sh:path dct:isVersionOf;
+  sh:node catalogus:WaardelijstAsset;
+.
+
+#
+# DCAT
+#
+
+catalogus:Catalog_description a sh:PropertyShape;
+  sh:order 9;
+  sh:name "dct:description";
+  sh:path dct:description;
+  dct:subject catalogusbegrip:Beschrijving;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Catalog_homepage a sh:PropertyShape;
+  sh:order 14;
+  sh:name "foaf:homepage";
+  sh:path foaf:homepage;
+  dct:subject catalogusbegrip:Webpagina;
+.
+catalogus:Catalog_label a sh:PropertyShape;
+  sh:order 0;
+  sh:name "rdfs:label";
+  sh:path rdfs:label;
+  dct:subject catalogusbegrip:Label;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Catalog_title a sh:PropertyShape;
+  sh:order 8;
+  sh:name "dct:title";
+  sh:path dct:title;
+  dct:subject catalogusbegrip:Titel;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Catalog_type a sh:PropertyShape;
+  sh:order 1;
+  sh:name "rdf:type";
+  sh:path rdf:type;
+  dct:subject catalogusbegrip:Type;
+  sh:nodeKind sh:IRI;
+  sh:minCount 1;
+.
+
+catalogus:Dataset_description a sh:PropertyShape;
+  sh:name "dct:description";
+  sh:path dct:description;
+  dct:subject catalogusbegrip:Beschrijving;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Dataset_keyword a sh:PropertyShape;
+  sh:order 13;
+  sh:name "dcat:keyword";
+  sh:path dcat:keyword;
+  dct:subject catalogusbegrip:Trefwoord;
+  sh:datatype xsd:string;
+.
+catalogus:Dataset_label a sh:PropertyShape;
+  sh:order 0;
+  sh:name "rdfs:label";
+  sh:path rdfs:label;
+  dct:subject catalogusbegrip:Label;
+  sh:datatype xsd:string;
+  sh:maxCount 1;
+.
+catalogus:Dataset_landingPage a sh:PropertyShape;
+  sh:order 15;
+  sh:name "dcat:landingPage";
+  sh:path dcat:landingPage;
+  dct:subject catalogusbegrip:Website;
+  sh:class foaf:Document;
+.
+catalogus:Dataset_language a sh:PropertyShape;
+  sh:order 12;
+  sh:name "dct:language";
+  sh:path dct:language;
+  dct:subject catalogusbegrip:Taal;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+.
+catalogus:Dataset_publisher a sh:PropertyShape;
+  sh:order 116;
+  sh:name "dct:publisher";
+  sh:path dct:publisher;
+  dct:subject catalogusbegrip:Publicist;
+  sh:nodeKind sh:IRI;
+  sh:class org:Organization;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Dataset_relation a sh:PropertyShape;
+  sh:order 105;
+  sh:name "dct:relation";
+  sh:path dct:relation;
+  dct:subject catalogusbegrip:GerelateerdObject;
+  sh:nodeKind sh:IRI;
+  sh:class dcat:Dataset;
+.
+catalogus:Dataset_spatial a sh:PropertyShape;
+  sh:order 106;
+  sh:name "dct:spatial";
+  sh:path dct:spatial;
+  dct:subject catalogusbegrip:GeografischeAfbakening;
+.
+catalogus:Dataset_title a sh:PropertyShape;
+  sh:order 8;
+  sh:name "dct:title";
+  sh:path dct:title;
+  dct:subject catalogusbegrip:Titel;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Dataset_type a sh:PropertyShape;
+  sh:order 1;
+  sh:name "rdf:type";
+  sh:path rdf:type;
+  dct:subject catalogusbegrip:Type;
+  sh:nodeKind sh:IRI;
+  sh:minCount 1;
+.
+catalogus:Dataset_versionInfo a sh:PropertyShape;
+  sh:order 308;
+  sh:name "owl:versionInfo";
+  sh:path owl:versionInfo;
+  dct:subject catalogusbegrip:VersieInformatie;
+  sh:datatype xsd:string;
+  sh:maxCount 1;
+.
+catalogus:Dataset_versionNotes a sh:PropertyShape;
+  sh:order 309;
+  sh:name "adms:versionNotes";
+  sh:path adms:versionNotes;
+  dct:subject catalogusbegrip:VersieNotities;
+  sh:datatype xsd:string;
+  sh:maxCount 1;
+.
+
+catalogus:Distribution_accessURL a sh:PropertyShape;
+  sh:order 10;
+  sh:name "dcat:accessURL";
+  sh:path dcat:accessURL;
+  dct:subject catalogusbegrip:ToegangsURL;
+.
+catalogus:Distribution_downloadURL a sh:PropertyShape;
+  sh:order 11;
+  sh:name "dcat:downloadURL";
+  sh:path dcat:downloadURL;
+  dct:subject catalogusbegrip:DownloadURL;
+.
+catalogus:Distribution_license a sh:PropertyShape;
+  sh:order 103;
+  sh:name "dct:license";
+  sh:path dct:license;
+  dct:subject catalogusbegrip:Licentie;
+.
+catalogus:Distribution_rights a sh:PropertyShape;
+  sh:order 104;
+  sh:name "dct:rights";
+  sh:path dct:rights;
+  dct:subject catalogusbegrip:Rechten;
+.
+
+#
+# DCMIPeriod
+#
+
+catalogus:Period_start a sh:PropertyShape;
+  sh:order 304;
+  sh:name "dcmiperiod:start";
+  sh:path dcmiperiod:start;
+  dct:subject catalogusbegrip:Begindatum;
+  sh:datatype xsd:date;
+  sh:maxCount 1;
+.
+catalogus:Period_end a sh:PropertyShape;
+  sh:order 305;
+  sh:name "dcmiperiod:end";
+  sh:path dcmiperiod:end;
+  dct:subject catalogusbegrip:Einddatum;
+  sh:datatype xsd:date;
+  sh:maxCount 1;
+.
+
+#
+# DCMIType
+#
+
+catalogus:Text_title a sh:PropertyShape;
+  sh:order 8;
+  sh:name "dct:title";
+  sh:path dct:title;
+  dct:subject catalogusbegrip:Titel;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Text_type a sh:PropertyShape;
+  sh:order 1;
+  sh:name "rdf:type";
+  sh:path rdf:type;
+  dct:subject catalogusbegrip:Type;
+  sh:nodeKind sh:IRI;
+  sh:minCount 1;
+.
+
+
+#
+# ORG
+#
+
+catalogus:Organization_identifier a sh:PropertyShape;
+  sh:order 120;
+  sh:name "org:identifier";
+  sh:path org:identifier;
+  dct:subject catalogusbegrip:Identificatienummer;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Organization_label a sh:PropertyShape;
+  sh:order 0;
+  sh:name "rdfs:label";
+  sh:path rdfs:label;
+  dct:subject catalogusbegrip:Label;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Organization_prefLabel a sh:PropertyShape;
+  sh:name "skos:prefLabel";
+  sh:path skos:prefLabel;
+  dct:subject catalogusbegrip:Voorkeursterm;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Organization_type a sh:PropertyShape;
+  sh:order 1;
+  sh:name "rdf:type";
+  sh:path rdf:type;
+  dct:subject catalogusbegrip:Type;
+  sh:nodeKind sh:IRI;
+  sh:minCount 1;
+.
+
+#
+# PROV
+#
+
+catalogus:Entity_changeNote a sh:PropertyShape;
+  sh:order 18;
+  sh:name "skos:changeNote";
+  sh:path skos:changeNote;
+  dct:subject catalogusbegrip:Wijzigingsnotitie;
+  sh:datatype xsd:string;
+.
+catalogus:Entity_generatedAtTime a sh:PropertyShape;
+  sh:order 301;
+  sh:name "prov:generatedAtTime";
+  sh:path prov:generatedAtTime;
+  dct:subject catalogusbegrip:Registratietijdstip;
+  sh:datatype xsd:dateTime;
+  sh:maxCount 1;
+.
+catalogus:Entity_invalidatedAtTime a sh:PropertyShape;
+  sh:order 302;
+  sh:name "prov:invalidatedAtTime";
+  sh:path prov:invalidatedAtTime;
+  dct:subject catalogusbegrip:Doorhaaltijdstip;
+  sh:datatype xsd:dateTime;
+  sh:maxCount 1;
+.
+catalogus:Entity_status a sh:PropertyShape;
+  sh:order 300;
+  sh:name "adms:status";
+  sh:path adms:status;
+  dct:subject catalogusbegrip:Status;
+  sh:nodeKind sh:IRI;
+  sh:maxCount 1;
+.
+catalogus:Entity_temporal a sh:PropertyShape;
+  sh:order 303;
+  sh:name "dct:temporal";
+  sh:path dct:temporal;
+  dct:subject catalogusbegrip:Geldigheid;
+  sh:nodeKind sh:IRI;
+  sh:node catalogus:Period;
+  sh:maxCount 1;
+.
+catalogus:Entity_wasAttributedTo a sh:PropertyShape;
+  sh:order 118;
+  sh:name "prov:wasAttributedTo";
+  sh:path prov:wasAttributedTo;
+  dct:subject catalogusbegrip:ToegeschrevenAan;
+  sh:nodeKind sh:IRI;
+  sh:class org:Organization;
+  sh:maxCount 1;
+.
+catalogus:Entity_wasRevisionOf a sh:PropertyShape;
+  sh:order 310;
+  sh:name "prov:wasRevisionOf";
+  sh:path prov:wasRevisionOf;
+  dct:subject catalogusbegrip:RevisieVan;
+  sh:nodeKind sh:IRI;
+  sh:class prov:Entity;
+  sh:maxCount 1;
+.
+
+catalogus:Person_givenName a sh:PropertyShape;
+  sh:order 16;
+  sh:name "foaf:givenName";
+  sh:path foaf:givenName;
+  dct:subject catalogusbegrip:VolledigeNaam;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Person_mbox a sh:PropertyShape;
+  sh:order 17;
+  sh:name "foaf:mbox";
+  sh:path foaf:mbox;
+  dct:subject catalogusbegrip:Emailadres;
+  sh:datatype xsd:string;
+.
+
+#
+# RDFS
+#
+
+catalogus:Resource_isPrimaryTopicOf a sh:PropertyShape;
+  sh:order 119;
+  sh:name "foaf:isPrimaryTopicOf";
+  sh:path foaf:isPrimaryTopicOf;
+  dct:subject catalogusbegrip:Metadata;
+  sh:nodeKind sh:IRI;
+  sh:class prov:Entity;
+  sh:minCount 1;
+.
+
+#
+# SKOS
+#
+
+catalogus:Collection_inScheme a sh:PropertyShape;
+  sh:order 101;
+  sh:name "skos:inScheme";
+  sh:path skos:inScheme;
+  dct:subject catalogusbegrip:BehoortTot;
+  sh:nodeKind sh:IRI;
+  sh:class skos:ConceptScheme;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Collection_label a sh:PropertyShape;
+  sh:order 0;
+  sh:name "rdfs:label";
+  sh:path rdfs:label;
+  dct:subject catalogusbegrip:Label;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Collection_member a sh:PropertyShape;
+  sh:order 102;
+  sh:name "skos:member";
+  sh:path skos:member;
+  dct:subject catalogusbegrip:Bevat;
+  sh:nodeKind sh:IRI;
+  sh:class skos:Concept;
+.
+catalogus:Collection_prefLabel a sh:PropertyShape;
+  sh:order 2;
+  sh:name "skos:prefLabel";
+  sh:path skos:prefLabel;
+  dct:subject catalogusbegrip:Voorkeursterm;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Collection_type a sh:PropertyShape;
+  sh:order 1;
+  sh:name "rdf:type";
+  sh:path rdf:type;
+  dct:subject catalogusbegrip:Type;
+  sh:nodeKind sh:IRI;
+  sh:minCount 1;
+.
+
+catalogus:Concept_ISA a sh:PropertyShape;
+  sh:name "ISA";
+  sh:path rdf:type;
+  sh:hasValue skos:Concept;
+.
+catalogus:Concept_altLabel a sh:PropertyShape;
+  sh:order 3;
+  sh:name "skos:altLabel";
+  sh:path skos:altLabel;
+  dct:subject catalogusbegrip:AlternatieveTerm;
+  sh:datatype xsd:string;
+.
+catalogus:Concept_broaderGeneric a sh:PropertyShape;
+  sh:order 200;
+  sh:name "skosthes:broaderGeneric";
+  sh:path skosthes:broaderGeneric;
+  dct:subject catalogusbegrip:SpecialisatieVan;
+  sh:node catalogus:GerelateerdConcept;
+.
+catalogus:Concept_broaderPartitive a sh:PropertyShape;
+  sh:order 202;
+  sh:name "skosthes:broaderPartitive";
+  sh:path skosthes:broaderPartitive;
+  dct:subject catalogusbegrip:OnderdeelVan;
+  sh:node catalogus:GerelateerdConcept;
+.
+catalogus:Concept_broadMatch a sh:PropertyShape;
+  sh:order 209;
+  sh:name "skos:broadMatch";
+  sh:path skos:broadMatch;
+  dct:subject catalogusbegrip:OvereenkomstigGenerieker;
+  sh:node catalogus:ExternConcept;
+.
+catalogus:Concept_closeMatch a sh:PropertyShape;
+  sh:order 206;
+  sh:name "skos:closeMatch";
+  sh:path skos:closeMatch;
+  dct:subject catalogusbegrip:VrijwelOvereenkomstig;
+  sh:node catalogus:ExternConcept;
+.
+catalogus:Concept_comment a sh:PropertyShape;
+  sh:order 5;
+  sh:name "rdfs:comment";
+  sh:path rdfs:comment;
+  dct:subject catalogusbegrip:Uitleg;
+  sh:datatype xsd:string;
+  sh:maxCount 1;
+.
+catalogus:Concept_definition a sh:PropertyShape;
+  sh:order 6;
+  sh:name "skos:definition";
+  sh:path skos:definition;
+  dct:subject catalogusbegrip:Definitie;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Concept_depiction a sh:PropertyShape;
+  sh:order 122;
+  sh:name "foaf:depiction";
+  sh:path foaf:depiction;
+  dct:subject catalogusbegrip:Verbeelding;
+.
+catalogus:Concept_editorialNote a sh:PropertyShape;
+  sh:name "skos:editorialNote";
+  sh:path skos:editorialNote;
+  dct:subject catalogusbegrip:Rationale;
+  sh:datatype xsd:string;
+.
+catalogus:Concept_exactMatch a sh:PropertyShape;
+  sh:order 207;
+  sh:name "skos:exactMatch";
+  sh:path skos:exactMatch;
+  dct:subject catalogusbegrip:ExactOvereenkomstig;
+  sh:node catalogus:ExternConcept;
+.
+catalogus:Concept_hiddenLabel a sh:PropertyShape;
+  sh:order 22;
+  sh:name "skos:hiddenLabel";
+  sh:path skos:hiddenLabel;
+  dct:subject catalogusbegrip:Zoekterm;
+  sh:datatype xsd:string;
+.
+catalogus:Concept_inScheme a sh:PropertyShape;
+  sh:name "skos:inScheme";
+  sh:path skos:inScheme;
+  dct:subject catalogusbegrip:BehoortTot;
+  sh:nodeKind sh:IRI;
+  sh:class skos:ConceptScheme;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Concept_label a sh:PropertyShape;
+  sh:order 0;
+  sh:name "rdfs:label";
+  sh:path rdfs:label;
+  dct:subject catalogusbegrip:Label;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Concept_mappingRelation a sh:PropertyShape;
+  sh:name "skos:mappingRelation";
+  sh:path skos:mappingRelation;
+  dct:subject catalogusbegrip:Harmonisatierelatie;
+  sh:node catalogus:ExternConcept;
+.
+catalogus:Concept_narrowerGeneric a sh:PropertyShape;
+  sh:order 201;
+  sh:name "skosthes:narrowerGeneric";
+  sh:path skosthes:narrowerGeneric;
+  dct:subject catalogusbegrip:GeneralisatieVan;
+  sh:node catalogus:GerelateerdConcept;
+.
+catalogus:Concept_narrowerPartitive a sh:PropertyShape;
+  sh:order 203;
+  sh:name "skosthes:narrowerPartitive";
+  sh:path skosthes:narrowerPartitive;
+  dct:subject catalogusbegrip:Omvat;
+  sh:node catalogus:GerelateerdConcept;
+.
+catalogus:Concept_narrowMatch a sh:PropertyShape;
+  sh:order 210;
+  sh:name "skos:narrowMatch";
+  sh:path skos:narrowMatch;
+  dct:subject catalogusbegrip:OvereenkomstigSpecifieker;
+  sh:node catalogus:ExternConcept;
+.
+catalogus:Concept_notation a sh:PropertyShape;
+  sh:order 4;
+  sh:name "skos:notation";
+  sh:path skos:notation;
+  dct:subject catalogusbegrip:Code;
+  sh:datatype xsd:string;
+.
+catalogus:Concept_prefLabel a sh:PropertyShape;
+  sh:name "skos:prefLabel";
+  sh:path skos:prefLabel;
+  dct:subject catalogusbegrip:Voorkeursterm;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Concept_related a sh:PropertyShape;
+  sh:name "skos:related";
+  sh:path skos:related;
+  dct:subject catalogusbegrip:Gerelateerd;
+  sh:node catalogus:GerelateerdConcept;
+.
+catalogus:Concept_relatedMatch a sh:PropertyShape;
+  sh:order 208;
+  sh:name "skos:relatedMatch";
+  sh:path skos:relatedMatch;
+  dct:subject catalogusbegrip:OvereenkomstigVerwant;
+  sh:node catalogus:ExternConcept;
+.
+catalogus:Concept_scopeNote a sh:PropertyShape;
+  sh:order 7;
+  sh:name "skos:scopeNote";
+  sh:path skos:scopeNote;
+  dct:subject catalogusbegrip:Toelichting;
+  sh:datatype xsd:string;
+.
+catalogus:Concept_semanticRelation a sh:PropertyShape;
+  sh:order 204;
+  sh:name "skos:semanticRelation";
+  sh:path skos:semanticRelation;
+  dct:subject catalogusbegrip:SemantischeRelatie;
+  sh:node catalogus:GerelateerdConcept;
+.
+catalogus:Concept_source a sh:PropertyShape;
+  sh:order 100;
+  sh:name "dct:source";
+  sh:path dct:source;
+  dct:subject catalogusbegrip:Bron;
+  sh:class dcmitype:Text;
+.
+catalogus:Concept_sourcedc a sh:PropertyShape;
+  # dc:source gebruiken we liever niet meer. Daarom niet opgenomen in de NodeShape
+  # voorlopig nog wel als begrip aanwezig, vanwege aanwezigheid in huidige catalogus
+  sh:order 18;
+  sh:name "dc:source";
+  sh:path <http://purl.org/dc/elements/1.1/source>;
+  dct:subject catalogusbegrip:Tekstbron;
+  sh:datatype xsd:string;
+.
+catalogus:Concept_type a sh:PropertyShape;
+  sh:order 1;
+  sh:name "rdf:type";
+  sh:path rdf:type;
+  dct:subject catalogusbegrip:Type;
+  sh:nodeKind sh:IRI;
+  sh:minCount 1;
+.
+
+catalogus:ConceptScheme_comment a sh:PropertyShape;
+  sh:order 5;
+  sh:name "rdfs:comment";
+  sh:path rdfs:comment;
+  dct:subject catalogusbegrip:Uitleg;
+  sh:datatype xsd:string;
+  sh:maxCount 1;
+.
+catalogus:ConceptScheme_label a sh:PropertyShape;
+  sh:order 0;
+  sh:name "rdfs:label";
+  sh:path rdfs:label;
+  dct:subject catalogusbegrip:Label;
+  sh:datatype xsd:string;
+  sh:maxCount 1;
+.
+catalogus:ConceptScheme_type a sh:PropertyShape;
+  sh:order 1;
+  sh:name "rdf:type";
+  sh:path rdf:type;
+  dct:subject catalogusbegrip:Type;
+  sh:nodeKind sh:IRI;
+  sh:minCount 1;
+.

@@ -1,0 +1,6 @@
+@prefix adms: <http://www.w3.org/ns/adms#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+adms:Asset a rdfs:Class;
+  rdfs:subClassOf dcat:Dataset;
+.

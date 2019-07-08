@@ -6,6 +6,7 @@
 @prefix org: <http://www.w3.org/ns/org#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix skosthes: <http://purl.org/iso25964/skos-thes#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix dcmiperiod: <http://dublincore.org/documents/2006/04/10/dcmi-period/>.
 @prefix dcmitype: <http://purl.org/dc/dcmitype/>.
@@ -35,17 +36,21 @@ catalogus:Asset a sh:NodeShape;
   sh:property catalogus:Dataset_landingPage;
   sh:property catalogus:Dataset_publisher;
   sh:property catalogus:Dataset_type;
-  sh:property catalogus:Asset_dstype;
+  sh:property catalogus:Asset_dcttype;
 .
 catalogus:WaardelijstAsset a sh:NodeShape;
   sh:name "Waardelijst (adms:Asset)";
+  rdfs:label "Waardelijst"@nl;
+  skos:inScheme catalogus:AssetTypes;
   sh:property catalogus:Asset_ISA;
+  sh:property catalogus:WaardelijstAsset_typeWaardelijst;
 .
 catalogus:WaardelijstAssetVersie a sh:NodeShape;
   sh:name "Waardelijstversie (adms:Asset)";
   sh:property catalogus:Asset_ISA;
   sh:property catalogus:Dataset_versionInfo;
   sh:property catalogus:Dataset_versionNotes;
+  sh:property catalogus:WaardelijstAsset_typeWaardelijst;
   sh:property catalogus:WaardelijstAssetVersie_isVersionOf;
 .
 
@@ -240,6 +245,31 @@ catalogus:Asset_ISA a sh:PropertyShape;
   sh:name "ISA";
   sh:path rdf:type;
   sh:hasValue adms:Asset;
+.
+catalogus:Asset_dcttype a sh:PropertyShape;
+  sh:name "dct:type";
+  sh:path dct:type;
+  sh:node catalogus:AssetType;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:AssetType a sh:NodeShape;
+  sh:name "Asset type";
+  sh:property [
+    sh:path skos:inScheme;
+    sh:hasValue catalogus:AssetTypes
+  ]
+.
+catalogus:AssetTypes a skos:ConceptScheme;
+  rdfs:label "Asset types";
+.
+
+catalogus:WaardelijstAsset_typeWaardelijst a sh:PropertyShape;
+  sh:name "dct:type";
+  sh:path dct:type;
+  sh:hasValue catalogus:WaardelijstAsset;
+  sh:minCount 1;
+  sh:maxCount 1;
 .
 
 catalogus:WaardelijstAssetVersie_isVersionOf a sh:PropertyShape;

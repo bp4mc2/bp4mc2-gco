@@ -13,7 +13,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
-@prefix graphql: <http://datashapes.org/graphql#>
+@prefix graphql: <http://datashapes.org/graphql#>.
+@prefix wdrs: <http://www.w3.org/2007/05/powder-s#>.
 
 @prefix sh: <http://www.w3.org/ns/shacl#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -55,6 +56,14 @@ catalogus:WaardelijstAssetVersie a sh:NodeShape;
   sh:property catalogus:WaardelijstAsset_typeWaardelijst;
   sh:property catalogus:WaardelijstAssetVersie_isVersionOf;
 .
+catalogus:InformatiemodelAsset a sh:NodeShape;
+  sh:name "Informatiemodel (adms:Asset)";
+  rdfs:label "Informatiemodel"@nl;
+  graphql:uriTemplate "http://{domein}/id/informatiemodel/{term}";
+  skos:inScheme catalogus:AssetTypes;
+  sh:property catalogus:Asset_ISA;
+  sh:property catalogus:InformatiemodelAsset_typeInformatiemodel;
+.
 
 #
 # DCAT
@@ -86,6 +95,14 @@ catalogus:Dataset a sh:NodeShape;
   sh:property catalogus:Dataset_versionInfo;
   sh:property catalogus:Dataset_versionNotes;
 .
+catalogus:InformatieproductDataset a sh:NodeShape;
+  sh:name "Informatieproduct (dcat:Dataset)";
+  rdfs:label "Informatieproduct"@nl;
+  sh:property catalogus:Dataset_describedby;
+  sh:property catalogus:Dataset_ISA;
+  sh:property catalogus:InformatieproductDataset_typeInformatieproduct;
+.
+
 catalogus:Distribution a sh:NodeShape;
   sh:name "dcat:Distribution";
   sh:targetClass dcat:Distribution;
@@ -280,6 +297,14 @@ catalogus:WaardelijstAssetVersie_isVersionOf a sh:PropertyShape;
   sh:node catalogus:WaardelijstAsset;
 .
 
+catalogus:InformatiemodelAsset_typeInformatiemodel a sh:PropertyShape;
+  sh:name "dct:type";
+  sh:path dct:type;
+  sh:hasValue catalogus:InformatiemodelAsset;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+
 #
 # DCAT
 #
@@ -419,6 +444,23 @@ catalogus:Dataset_versionNotes a sh:PropertyShape;
   sh:path adms:versionNotes;
   dct:subject catalogusbegrip:VersieNotities;
   sh:datatype xsd:string;
+  sh:maxCount 1;
+.
+catalogus:Dataset_ISA a sh:PropertyShape;
+  sh:name "ISA";
+  sh:path rdf:type;
+  sh:hasValue dcat:Dataset;
+.
+catalogus:Dataset_describedby a sh:PropertyShape;
+  sh:name "wdrs:describedby";
+  sh:path wdrs:describedby;
+  sh:node catalogus:InformatiemodelAsset;
+.
+catalogus:InformatieproductDataset_typeInformatieproduct a sh:PropertyShape;
+  sh:name "dct:type";
+  sh:path dct:type;
+  sh:hasValue catalogus:InformatieproductDataset;
+  sh:minCount 1;
   sh:maxCount 1;
 .
 

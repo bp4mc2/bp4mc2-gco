@@ -13,6 +13,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix graphql: <http://datashapes.org/graphql#>
 
 @prefix sh: <http://www.w3.org/ns/shacl#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -41,6 +42,7 @@ catalogus:Asset a sh:NodeShape;
 catalogus:WaardelijstAsset a sh:NodeShape;
   sh:name "Waardelijst (adms:Asset)";
   rdfs:label "Waardelijst"@nl;
+  graphql:uriTemplate "http://{domein}/id/waardelijst/{term}";
   skos:inScheme catalogus:AssetTypes;
   sh:property catalogus:Asset_ISA;
   sh:property catalogus:WaardelijstAsset_typeWaardelijst;

@@ -15,6 +15,23 @@
   <key for="edge" id="d11" yfiles.type="edgegraphics"/>
   <graph edgedefault="directed" id="G">
     <node id="n0">
+      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/BibliographicResource]]></data>
+      <data key="d4"/>
+      <data key="d5">
+        <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
+          <y:Geometry height="66.0" width="200.0" x="421.5310889675179" y="648.655580879694"/>
+          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="20.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="200.0" x="0.0" xml:space="preserve" y="4.0">Brondocument</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="10" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="27.5546875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="200.0" x="2.0" xml:space="preserve" y="32.1328125">type [1,n]
+titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y:ModelParameter><y:ErdAttributesNodeLabelModelParameter/></y:ModelParameter></y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="true"/>
+          </y:StyleProperties>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n1">
       <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Collection]]></data>
       <data key="d4"/>
       <data key="d5">
@@ -32,7 +49,7 @@ voorkeursterm (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:La
         </y:GenericNode>
       </data>
     </node>
-    <node id="n1">
+    <node id="n2">
       <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d4"/>
       <data key="d5">
@@ -58,7 +75,7 @@ voorkeursterm (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:La
         </y:GenericNode>
       </data>
     </node>
-    <node id="n2">
+    <node id="n3">
       <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ConceptScheme]]></data>
       <data key="d4"/>
       <data key="d5">
@@ -76,7 +93,7 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
         </y:GenericNode>
       </data>
     </node>
-    <node id="n3">
+    <node id="n4">
       <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
       <data key="d4"/>
       <data key="d5">
@@ -99,7 +116,7 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
         </y:GenericNode>
       </data>
     </node>
-    <node id="n4">
+    <node id="n5">
       <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
       <data key="d4"/>
       <data key="d5">
@@ -122,24 +139,7 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
         </y:GenericNode>
       </data>
     </node>
-    <node id="n5">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Text]]></data>
-      <data key="d4"/>
-      <data key="d5">
-        <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
-          <y:Geometry height="66.0" width="200.0" x="421.5310889675179" y="645.655580879694"/>
-          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
-          <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_width" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="20.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="200.0" x="0.0" xml:space="preserve" y="4.0">Brondocument</y:NodeLabel>
-          <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="10" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="27.5546875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="200.0" x="2.0" xml:space="preserve" y="32.1328125">type [1,n]
-titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y:ModelParameter><y:ErdAttributesNodeLabelModelParameter/></y:ModelParameter></y:NodeLabel>
-          <y:StyleProperties>
-            <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="true"/>
-          </y:StyleProperties>
-        </y:GenericNode>
-      </data>
-    </node>
-    <edge id="e0" source="n0" target="n2">
+    <edge id="e0" source="n1" target="n3">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Collection]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ConceptScheme]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#inScheme]]></data>
@@ -154,7 +154,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e1" source="n0" target="n1">
+    <edge id="e1" source="n1" target="n2">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Collection]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#member]]></data>
@@ -169,7 +169,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e2" source="n1" target="n3">
+    <edge id="e2" source="n2" target="n4">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#mappingRelation]]></data>
@@ -184,7 +184,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e3" source="n1" target="n4">
+    <edge id="e3" source="n2" target="n5">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#related]]></data>
@@ -199,7 +199,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e4" source="n1" target="n3">
+    <edge id="e4" source="n2" target="n4">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#broadMatch]]></data>
@@ -214,7 +214,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e5" source="n1" target="n3">
+    <edge id="e5" source="n2" target="n4">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#exactMatch]]></data>
@@ -229,7 +229,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e6" source="n1" target="n3">
+    <edge id="e6" source="n2" target="n4">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#narrowMatch]]></data>
@@ -244,7 +244,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e7" source="n1" target="n4">
+    <edge id="e7" source="n2" target="n5">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/iso25964/skos-thes#broaderPartitive]]></data>
@@ -259,7 +259,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e8" source="n1" target="n3">
+    <edge id="e8" source="n2" target="n4">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#closeMatch]]></data>
@@ -274,7 +274,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e9" source="n1" target="n3">
+    <edge id="e9" source="n2" target="n4">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#relatedMatch]]></data>
@@ -289,7 +289,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e10" source="n1" target="n4">
+    <edge id="e10" source="n2" target="n5">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/iso25964/skos-thes#narrowerGeneric]]></data>
@@ -304,7 +304,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e11" source="n1" target="n4">
+    <edge id="e11" source="n2" target="n5">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/iso25964/skos-thes#narrowerPartitive]]></data>
@@ -319,7 +319,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e12" source="n1" target="n2">
+    <edge id="e12" source="n2" target="n3">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ConceptScheme]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#inScheme]]></data>
@@ -334,9 +334,9 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e13" source="n1" target="n5">
+    <edge id="e13" source="n2" target="n0">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Text]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/BibliographicResource]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/dc/terms/source]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -344,12 +344,12 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="61.71484375" x="-30.857399802013333" xml:space="preserve" y="27.14029461265079">bron [0,n]<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="center" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="61.71484375" x="-30.857399802013333" xml:space="preserve" y="28.65433269858829">bron [0,n]<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="center" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e14" source="n1" target="n4">
+    <edge id="e14" source="n2" target="n5">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#semanticRelation]]></data>
@@ -364,7 +364,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e15" source="n1" target="n4">
+    <edge id="e15" source="n2" target="n5">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/iso25964/skos-thes#broaderGeneric]]></data>
@@ -379,7 +379,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e16" source="n3" target="n1">
+    <edge id="e16" source="n4" target="n2">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/1999/02/22-rdf-syntax-ns#type]]></data>
@@ -396,7 +396,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e17" source="n4" target="n1">
+    <edge id="e17" source="n5" target="n2">
       <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
       <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/1999/02/22-rdf-syntax-ns#type]]></data>

@@ -42,7 +42,6 @@ cataloguscollectie:SemantischeRelaties a skos:Collection;
 #
 
 catalogusbegrip:Brondocument a skos:Concept;
-  # Nu wordt nog verwezen naar dcmitype:Text, maar beter zou zijn dat dit naar dct:BibliographicResource gaat
   rdfs:label "Bibliographic Resource"@en;
   rdfs:label "Brondocument"@nl;
   skos:definition "A resource consisting primarily of words for reading."@en;

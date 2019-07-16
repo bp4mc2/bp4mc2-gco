@@ -102,7 +102,7 @@ catalogus:WaardelijstAssetVersie a sh:NodeShape;
 catalogus:InformatiemodelAsset a sh:NodeShape;
   sh:name "Informatiemodel (adms:Asset)";
   rdfs:label "Informatiemodel"@nl;
-  graphql:uriTemplate "http://{domein}/id/informatiemodel/{term}";
+  graphql:uriTemplate "http://{$domain}/id/informatiemodel/{$term}";
   skos:inScheme catalogus:AssetTypes;
   sh:property catalogus:Asset_ISA;
   sh:property catalogus:InformatiemodelAsset_typeInformatiemodel;
@@ -357,6 +357,7 @@ catalogus:Asset_dcttype a sh:PropertyShape;
 .
 catalogus:AssetType a sh:NodeShape;
   sh:name "Asset type";
+  rdfs:label "Type asset"@nl;
   sh:property [
     sh:path skos:inScheme;
     sh:hasValue catalogus:AssetTypes

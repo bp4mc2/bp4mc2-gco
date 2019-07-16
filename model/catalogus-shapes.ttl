@@ -40,6 +40,26 @@ catalogus:VersionStampFunction a sh:Function;
   rdfs:comment "The version stamp, formatted to the YYY-MM-DD-HH-MM format. The version stamp is calculated from the prov:generatedAtTime";
   graphql:name "version";
 .
+catalogus:CatalogDomainFunction a sh:Function;
+  rdfs:label "Catalog domain"@en;
+  rdfs:comment "The constant value of the catalog domain, as used in uri templates";
+  graphql:name "catalog";
+.
+catalogus:ClassTermFunction a sh:Function;
+  rdfs:label "Class term"@en;
+  rdfs:comment "The class term for a particular resource, calculated from rdf:type/rdfs:label"@en;
+  graphql:name "class";
+.
+catalogus:TopicTermFunction a sh:Function;
+  rdfs:label "Topic term"@en;
+  rdfs:comment "The term of a topic of an entity, calculated from ^foaf:isPrimaryTopicOf/rdfs:label"@en;
+  graphql:name "topicTerm";
+.
+catalogus:TopicClassTermFunction a sh:Function;
+  rdfs:label "Topic class term"@en;
+  rdfs:comment "The class term for a topic of an entity, calculated from ^foaf:isPrimaryTopicOf/rdf:type/rdfs:label"@en;
+  graphql:name "topicClass";
+.
 
 #
 # NodeShapes
@@ -50,6 +70,7 @@ catalogus:VersionStampFunction a sh:Function;
 #
 catalogus:Asset a sh:NodeShape;
   sh:name "adms:Asset";
+  # adms:Assets worden nader getypeerd met dct:type. Er is dan ook geen uriTemplate voor adms:Asset zelf
   sh:targetClass adms:Asset;
   sh:property catalogus:Dataset_label;
   sh:property catalogus:Dataset_title;
@@ -90,6 +111,8 @@ catalogus:InformatiemodelAsset a sh:NodeShape;
 #
 catalogus:Catalog a sh:NodeShape;
   sh:name "dcat:Catalog";
+  graphql:uriTemplate "http://{$catalog}/id/catalog/{$term}";
+  # Catalogus wordt nu "gebootstrapt", de uri wordt niet gemunt, maar expliciet toegevoegd
   sh:targetClass dcat:Catalog;
   dct:subject catalogusbegrip:Catalogus;
   sh:property catalogus:Catalog_description;
@@ -100,6 +123,8 @@ catalogus:Catalog a sh:NodeShape;
 .
 catalogus:Dataset a sh:NodeShape;
   sh:name "dcat:Dataset";
+  graphql:uriTemplate "http://{$domain}/id/dataset/{$term}";
+  # Dataset is nu nog niet in gebruikt in de catalogus. De voorgestelde uriTemplate is nu nog strijdig met die van ConceptScheme!
   sh:targetClass dcat:Dataset;
   dct:subject catalogusbegrip:Dataset;
   sh:property catalogus:Dataset_description;
@@ -117,6 +142,7 @@ catalogus:Dataset a sh:NodeShape;
 .
 catalogus:InformatieproductDataset a sh:NodeShape;
   sh:name "Informatieproduct (dcat:Dataset)";
+  graphql:uriTemplate "http://{$domain}/id/informatieproduct/{$term}";
   rdfs:label "Informatieproduct"@nl;
   sh:property catalogus:Dataset_describedby;
   sh:property catalogus:Dataset_ISA;
@@ -125,6 +151,8 @@ catalogus:InformatieproductDataset a sh:NodeShape;
 
 catalogus:Distribution a sh:NodeShape;
   sh:name "dcat:Distribution";
+  graphql:uriTemplate "http://{$domain}/id/distribution/{$term}";
+  # Distributie is nog niet in gebruik
   sh:targetClass dcat:Distribution;
   dct:subject catalogusbegrip:Distributie;
   sh:property catalogus:Distribution_accessURL;
@@ -138,6 +166,8 @@ catalogus:Distribution a sh:NodeShape;
 #
 catalogus:Period a sh:NodeShape;
   sh:name "Period";
+  graphql:uriTemplate "http://{$catalog}/id/temporal/{$version}-{$topicClass}-{$topicTerm}";
+  #ANNOTATIE: Op dit moment wordt daadwerkelijk een uri gemunt. Beter zou een blank node zijn, of anders een URI die je niet kunt dereference-en (bv uuid of gegenereerd uit de data zelf)
   dct:subject catalogusbegrip:Periode;
   sh:property catalogus:Period_start;
   sh:property catalogus:Period_end;
@@ -148,6 +178,7 @@ catalogus:Period a sh:NodeShape;
 #
 catalogus:BibliographicResource a sh:NodeShape;
   sh:name "dct:BibliographicResource";
+  graphql:uriTemplate "http://{$domain}/id/bibliographicresource/{$term}";
   sh:targetClass dct:BibliographicResource;
   dct:subject catalogusbegrip:Brondocument;
   sh:property catalogus:BibliographicResource_title;
@@ -159,6 +190,7 @@ catalogus:BibliographicResource a sh:NodeShape;
 #
 catalogus:Document a sh:NodeShape;
   sh:name "foaf:Document";
+  # Dit betreft elke willekeurig URI op het internet, dus geen uriTemplate
   sh:targetClass foaf:Document;
   dct:subject catalogusbegrip:Document;
 .
@@ -168,6 +200,9 @@ catalogus:Document a sh:NodeShape;
 #
 catalogus:Organization a sh:NodeShape;
   sh:name "org:Organization";
+  graphql:uriTemplate "http://{$catalog}/id/organization/{$term}";
+  #ANNOTATIE: Beter zou zijn om in dit geval de identifier te gebruiken als identificerend kenmerk
+  #CORRECT: graphql:uriTemplate "http://{$catalog}/id/organization/{$identifier}";
   sh:targetClass org:Organization;
   dct:subject catalogusbegrip:Organisatie;
   sh:property catalogus:Organization_identifier;
@@ -181,6 +216,9 @@ catalogus:Organization a sh:NodeShape;
 #
 catalogus:Entity a sh:NodeShape;
   sh:name "prov:Entity";
+  graphql:uriTemplate "http://{$catalog}/id/entity/{$version}-{$topicClass}-{$topicTerm}";
+  #TODO: bovenstaande template klopt niet: zou de /doc/ uri van het element moeten zijn (en dan liefst ook https)!
+  #CORRECT: graphql:uriTemplate "https://{$topicDomain}/doc/{$topicClass}/{$topicTerm}";
   sh:targetClass prov:Entity;
   dct:subject catalogusbegrip:Voorkomen;
   sh:property catalogus:Entity_changeNote;
@@ -193,6 +231,7 @@ catalogus:Entity a sh:NodeShape;
 .
 catalogus:Person a sh:NodeShape;
   sh:name "prov:Person";
+  #Nog niet in gebruik, geen uri template beschikbaar
   sh:targetClass prov:Person;
   dct:subject catalogusbegrip:Persoon;
   sh:property catalogus:Person_mbox;
@@ -204,6 +243,7 @@ catalogus:Person a sh:NodeShape;
 #
 catalogus:Resource a sh:NodeShape;
   sh:name "rdfs:Resource";
+  #Abstracte klasse tbv provenance model, geen uri template nodig
   sh:targetClass rdfs:Resource;
   dct:subject catalogusbegrip:Object;
   sh:property catalogus:Resource_isPrimaryTopicOf
@@ -214,6 +254,7 @@ catalogus:Resource a sh:NodeShape;
 #
 catalogus:Collection a sh:NodeShape;
   sh:name "skos:Collection";
+  graphql:uriTemplate "http://{$domain}/id/collection/{$term}";
   sh:targetClass skos:Collection;
   dct:subject catalogusbegrip:Collectie;
   sh:property catalogus:Collection_inScheme;
@@ -224,6 +265,7 @@ catalogus:Collection a sh:NodeShape;
 .
 catalogus:Concept a sh:NodeShape;
   sh:name "skos:Concept";
+  graphql:uriTemplate "http://{$domain}/id/concept/{$term}";
   sh:targetClass skos:Concept;
   dct:subject catalogusbegrip:Concept;
   sh:property catalogus:Concept_altLabel;
@@ -255,6 +297,9 @@ catalogus:Concept a sh:NodeShape;
 .
 catalogus:ConceptScheme a sh:NodeShape;
   sh:name "skos:ConceptScheme";
+  graphql:uriTemplate "http://{$domain}/id/dataset/{$term}";
+  #ANNOTATIE: Bovenstaande template klopt niet: zou niet /dataset/ moeten zijn
+  #CORRECT: graphql:uriTemplate "http://{$domain}/id/conceptscheme/{$term}";
   sh:targetClass skos:ConceptScheme;
   dct:subject catalogusbegrip:Conceptschema;
   sh:property catalogus:ConceptScheme_comment;
@@ -632,7 +677,7 @@ catalogus:Entity_temporal a sh:PropertyShape;
   sh:name "dct:temporal";
   sh:path dct:temporal;
   dct:subject catalogusbegrip:Geldigheid;
-  sh:nodeKind sh:IRI;
+  sh:nodeKind sh:BlankNodeOrIRI; #Op dit moment is het nog een IRI, beter zou een blanknode zijn?
   sh:node catalogus:Period;
   sh:maxCount 1;
 .

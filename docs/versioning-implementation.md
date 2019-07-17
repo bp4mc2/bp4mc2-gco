@@ -16,7 +16,7 @@ At a certain point in time, concept `C` is replaced by concept `B`. As soon as t
 
 Finally, something changes about concept `A`, changing it to a new version of the concept, denoted by `A'`. As soon as this change is uploaded to the Catalogus, all information about the changed concept `A'` is added to the new `Versiongraph 3`. Furthermore, the link in the mastergraph is updated, so that it no longer points to `Versiongraph 1`, where the previous version of `A` can still be found, but to `Versiongraph 3`, which now has the most recent version. Finally, a triple is added to `Versiongraph 1` to denote that the version of concept `A` in that graph is no longer up to date (and since when). See the picture below.
 
-![Mastergraph and versiongraphs 1-3](mv3.png)
+![Mastergraph and versiongraphs 1-3](images/mv3.png)
 
 ### Contents of the mastergraph
 Per versioned concept, the mastergraph contains three triples:

@@ -4,12 +4,14 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#>.
 @prefix adms: <http://www.w3.org/ns/adms#>.
 @prefix org: <http://www.w3.org/ns/org#>.
+@prefix oa: <http://www.w3.org/ns/oa#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix skosthes: <http://purl.org/iso25964/skos-thes#>.
 @prefix dc: <http://purl.org/dc/elements/1.1/>.
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix dcmiperiod: <http://dublincore.org/documents/2006/04/10/dcmi-period/>.
 @prefix dcmitype: <http://purl.org/dc/dcmitype/>.
+@prefix dqv: <http://www.w3.org/ns/dqv#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -21,6 +23,12 @@
 
 @prefix catalogus: <http://catalogus.omgevingswet.overheid.nl/def/catalogus/>.
 @prefix catalogusbegrip: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/concept/>.
+@prefix dimensie: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/dimensie/>.
+
+#
+# Annotations
+#
+dqv:qualityAssessment sh:name "dqv:qualityAssessment".
 
 #
 # Functions (used for uri-templating)
@@ -87,7 +95,7 @@ catalogus:WaardelijstAsset a sh:NodeShape;
   graphql:uriTemplate "http://{$domain}/id/waardelijst/{$term}";
   skos:inScheme catalogus:AssetTypes;
   sh:property catalogus:Asset_ISA;
-  sh:property catalogus:WaardelijstAsset_typeWaardelijst;
+  sh:property catalogus:Asset_typeWaardelijst;
 .
 catalogus:WaardelijstAssetVersie a sh:NodeShape;
   sh:name "Waardelijstversie (adms:Asset)";
@@ -96,7 +104,7 @@ catalogus:WaardelijstAssetVersie a sh:NodeShape;
   sh:property catalogus:Asset_ISA;
   sh:property catalogus:Dataset_versionInfo;
   sh:property catalogus:Dataset_versionNotes;
-  sh:property catalogus:WaardelijstAsset_typeWaardelijst;
+  sh:property catalogus:Asset_typeWaardelijst;
   sh:property catalogus:WaardelijstAssetVersie_isVersionOf;
 .
 catalogus:InformatiemodelAsset a sh:NodeShape;
@@ -105,7 +113,7 @@ catalogus:InformatiemodelAsset a sh:NodeShape;
   graphql:uriTemplate "http://{$domain}/id/informatiemodel/{$term}";
   skos:inScheme catalogus:AssetTypes;
   sh:property catalogus:Asset_ISA;
-  sh:property catalogus:InformatiemodelAsset_typeInformatiemodel;
+  sh:property catalogus:Asset_typeInformatiemodel;
 .
 
 #
@@ -143,6 +151,7 @@ catalogus:Dataset a sh:NodeShape;
   sh:property catalogus:Dataset_type;
   sh:property catalogus:Dataset_versionInfo;
   sh:property catalogus:Dataset_versionNotes;
+  sh:property catalogus:Dataset_hasQualityAnnotation;
 .
 catalogus:InformatieproductDataset a sh:NodeShape;
   sh:name "Informatieproduct (dcat:Dataset)";
@@ -151,20 +160,29 @@ catalogus:InformatieproductDataset a sh:NodeShape;
   rdfs:label "Informatieproduct"@nl;
   sh:property catalogus:Dataset_describedby;
   sh:property catalogus:Dataset_ISA;
-  sh:property catalogus:InformatieproductDataset_typeInformatieproduct;
+  sh:property catalogus:Dataset_typeInformatieproduct;
 .
 
-catalogus:Distribution a sh:NodeShape;
-  sh:name "dcat:Distribution";
-  rdfs:label "Distributie"@nl;
-  graphql:uriTemplate "http://{$domain}/id/distribution/{$term}";
-  # Distributie is nog niet in gebruik
-  sh:targetClass dcat:Distribution;
+catalogus:DataService a sh:NodeShape;
+  sh:name "dcat:DataService";
+  rdfs:label "Data service"@nl;
+  graphql:uriTemplate "http://{$domain}/id/dataservice/{$term}";
+  sh:targetClass dcat:DataService;
   dct:subject catalogusbegrip:Distributie;
-  sh:property catalogus:Distribution_accessURL;
-  sh:property catalogus:Distribution_downloadURL;
-  sh:property catalogus:Distribution_license;
-  sh:property catalogus:Distribution_rights;
+  sh:property catalogus:DataService_servesDataset;
+  sh:property catalogus:DataService_endpointURL;
+  sh:property catalogus:DataService_endpointDescription;
+  sh:property catalogus:DataService_license;
+  sh:property catalogus:DataService_rights;
+  sh:property catalogus:DataService_dcttype;
+.
+catalogus:RESTAPI a sh:NodeShape;
+  sh:name "REST API (dcat:DataService)";
+  rdfs:label "REST API"@nl;
+  graphql:uriTemplate "http://{$domain}/id/dataservice/{$term}";
+  skos:inScheme catalogus:DataServiceTypes;
+  sh:property catalogus:DataService_ISA;
+  sh:property catalogus:DataService_typeRESTAPI;
 .
 
 #
@@ -191,6 +209,68 @@ catalogus:BibliographicResource a sh:NodeShape;
   dct:subject catalogusbegrip:Brondocument;
   sh:property catalogus:BibliographicResource_title;
   sh:property catalogus:BibliographicResource_type;
+.
+
+#
+# DQV
+#
+catalogus:Dimension a sh:NodeShape;
+  sh:name "dqv:Dimension";
+  graphql:uriTemplate "http://{$domain}/id/dimension/{$term}";
+  sh:targetClass dqv:Dimension;
+  sh:property [
+    sh:path skos:inScheme;
+    sh:hasValue catalogus:Dimensions
+  ];
+.
+catalogus:Dimensions a skos:ConceptScheme;
+  rdfs:label "Dimensions";
+.
+dimensie:Accuracy a dqv:Dimension;
+  rdfs:label "Nauwkeurigheid"@nl;
+  skos:inScheme catalogus:Dimensions;
+.
+dimensie:Completeness a dqv:Dimension;
+  rdfs:label "Compleetheid"@nl;
+  skos:inScheme catalogus:Dimensions;
+.
+dimensie:Consistency a dqv:Dimension;
+  rdfs:label "Consistentie"@nl;
+  skos:inScheme catalogus:Dimensions;
+.
+dimensie:Actuality a dqv:Dimension;
+  rdfs:label "Actualiteit"@nl;
+  skos:inScheme catalogus:Dimensions;
+.
+dimensie:Precision a dqv:Dimension;
+  rdfs:label "Precisie"@nl;
+  skos:inScheme catalogus:Dimensions;
+.
+dimensie:Plausibility a dqv:Dimension;
+  rdfs:label "Plausibiliteit"@nl;
+  skos:inScheme catalogus:Dimensions;
+.
+dimensie:Tracebility a dqv:Dimension;
+  rdfs:label "Traceerbaarheid"@nl;
+  skos:inScheme catalogus:Dimensions;
+.
+dimensie:Compliance a dqv:Dimension;
+  rdfs:label "Compliance"@nl;
+  skos:inScheme catalogus:Dimensions;
+.
+dimensie:Comprehensible a dqv:Dimension;
+  rdfs:label "Begrijpelijkheid"@nl;
+  skos:inScheme catalogus:Dimensions;
+.
+
+catalogus:QualityAnnotation a sh:NodeShape;
+  sh:name "dqv:QualityAnnotation";
+  rdfs:label "Kwaliteitskenmerk"@nl;
+  graphql:uriTemplate "http://{$domain}/id/qualityannotation/{$term}";
+  sh:targetClass dqv:QualityAnnotation;
+  sh:property catalogus:QualityAnnotation_motivatedBy;
+  sh:property catalogus:QualityAnnotation_hasBodyValue;
+  sh:property catalogus:QualityAnnotation_inDimension;
 .
 
 #
@@ -367,10 +447,17 @@ catalogus:AssetTypes a skos:ConceptScheme;
   rdfs:label "Asset types";
 .
 
-catalogus:WaardelijstAsset_typeWaardelijst a sh:PropertyShape;
+catalogus:Asset_typeWaardelijst a sh:PropertyShape;
   sh:name "dct:type";
   sh:path dct:type;
   sh:hasValue catalogus:WaardelijstAsset;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:Asset_typeInformatiemodel a sh:PropertyShape;
+  sh:name "dct:type";
+  sh:path dct:type;
+  sh:hasValue catalogus:InformatiemodelAsset;
   sh:minCount 1;
   sh:maxCount 1;
 .
@@ -381,13 +468,6 @@ catalogus:WaardelijstAssetVersie_isVersionOf a sh:PropertyShape;
   sh:node catalogus:WaardelijstAsset;
 .
 
-catalogus:InformatiemodelAsset_typeInformatiemodel a sh:PropertyShape;
-  sh:name "dct:type";
-  sh:path dct:type;
-  sh:hasValue catalogus:InformatiemodelAsset;
-  sh:minCount 1;
-  sh:maxCount 1;
-.
 
 #
 # DCAT
@@ -540,7 +620,7 @@ catalogus:Dataset_describedby a sh:PropertyShape;
   sh:path wdrs:describedby;
   sh:node catalogus:InformatiemodelAsset;
 .
-catalogus:InformatieproductDataset_typeInformatieproduct a sh:PropertyShape;
+catalogus:Dataset_typeInformatieproduct a sh:PropertyShape;
   sh:name "dct:type";
   sh:path dct:type;
   sh:hasValue catalogus:InformatieproductDataset;
@@ -548,29 +628,71 @@ catalogus:InformatieproductDataset_typeInformatieproduct a sh:PropertyShape;
   sh:maxCount 1;
 .
 
-catalogus:Distribution_accessURL a sh:PropertyShape;
-  sh:order 10;
-  sh:name "dcat:accessURL";
-  sh:path dcat:accessURL;
-  dct:subject catalogusbegrip:ToegangsURL;
+catalogus:DataService_servesDataset a sh:PropertyShape;
+  sh:name "dcat:servesDataset";
+  sh:path dcat:servesDataset;
+  sh:class dcat:Dataset;
 .
-catalogus:Distribution_downloadURL a sh:PropertyShape;
-  sh:order 11;
-  sh:name "dcat:downloadURL";
-  sh:path dcat:downloadURL;
-  dct:subject catalogusbegrip:DownloadURL;
+
+catalogus:DataService_endpointURL a sh:PropertyShape;
+  sh:name "dcat:endpointURL";
+  sh:path dcat:endpointURL;
+  sh:node catalogus:Endpoint;
 .
-catalogus:Distribution_license a sh:PropertyShape;
+catalogus:Endpoint a sh:NodeShape;
+  sh:name "URL (of endpoint)";
+.
+
+catalogus:DataService_endpointDescription a sh:PropertyShape;
+  sh:name "dcat:endpointDescription";
+  sh:path dcat:endpointDescription;
+  sh:node catalogus:EndpointDescription;
+.
+catalogus:EndpointDescription a sh:NodeShape;
+  sh:name "URL (of endpoint description)";
+.
+catalogus:DataService_license a sh:PropertyShape;
   sh:order 103;
   sh:name "dct:license";
   sh:path dct:license;
   dct:subject catalogusbegrip:Licentie;
 .
-catalogus:Distribution_rights a sh:PropertyShape;
+catalogus:DataService_rights a sh:PropertyShape;
   sh:order 104;
   sh:name "dct:rights";
   sh:path dct:rights;
   dct:subject catalogusbegrip:Rechten;
+.
+catalogus:DataService_ISA a sh:PropertyShape;
+  sh:name "rdf:type";
+  sh:path rdf:type;
+  sh:hasValue dcat:DataService;
+.
+catalogus:DataService_dcttype a sh:PropertyShape;
+  sh:name "dct:type";
+  sh:path dct:type;
+  sh:node catalogus:DataServiceType;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:DataServiceType a sh:NodeShape;
+  sh:name "DataService type";
+  rdfs:label "Type data service"@nl;
+  sh:property [
+    sh:path skos:inScheme;
+    sh:hasValue catalogus:DataServiceTypes
+  ]
+.
+catalogus:DataServiceTypes a skos:ConceptScheme;
+  rdfs:label "Data services types";
+.
+
+catalogus:DataService_typeRESTAPI a sh:PropertyShape;
+  sh:name "dct:type";
+  sh:path dct:type;
+  sh:hasValue catalogus:RESTAPI;
+  sh:minCount 1;
+  sh:maxCount 1;
 .
 
 #
@@ -616,6 +738,35 @@ catalogus:BibliographicResource_type a sh:PropertyShape;
   sh:minCount 1;
 .
 
+#
+# DQV
+#
+
+catalogus:Dataset_hasQualityAnnotation a sh:PropertyShape;
+  sh:name "dqv:hasQualityAnnotation";
+  sh:path dqv:hasQualityAnnotation;
+  sh:class dqv:QualityAnnotation;
+.
+
+catalogus:QualityAnnotation_motivatedBy a sh:PropertyShape;
+  sh:name "oa:motivatedBy";
+  sh:path oa:motivatedBy;
+  sh:hasValue dqv:qualityAssessment;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:QualityAnnotation_hasBodyValue a sh:PropertyShape;
+  sh:name "oa:hasBodyValue";
+  sh:path oa:hasBodyValue;
+  sh:datatype xsd:string;
+  sh:minCount 1;
+  sh:maxCount 1;
+.
+catalogus:QualityAnnotation_inDimension a sh:PropertyShape;
+  sh:name "dqv:inDimension";
+  sh:path dqv:inDimension;
+  sh:class dqv:Dimension;
+.
 
 #
 # ORG

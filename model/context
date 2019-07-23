@@ -6,8 +6,12 @@
     "sitemapindex": "@graph",
     "dct": "http://purl.org/dc/terms/",
     "skos": "http://www.w3.org/2004/02/skos/core#",
+    "adms": "http://www.w3.org/ns/adms#",
+    "catalogus": "http://catalogus.omgevingswet.overheid.nl/def/catalogus/",
     "laatsteWijziging": "dct:modified",
     "Concept": "skos:Concept",
+    "Asset": "adms:Asset",
+    "WaardelijstAsset": "catalogus:WaardelijstAsset",
     "naam": "skos:prefLabel",
     "code": "skos:notation",
     "definitie": "skos:definition"

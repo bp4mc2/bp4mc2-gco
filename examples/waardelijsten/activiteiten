@@ -1,6 +1,6 @@
 {
   "@context": "https://raw.githubusercontent.com/bp4mc2/bp4mc2-gco/master/model/context",
-  "id": "http://bp4mc2.org/examples/gco/id/waardelijst/activiteiten"
+  "id": "http://bp4mc2.org/examples/gco/id/waardelijst/activiteiten",
   "type": "Asset",
   "soort": "WaardelijstAsset"
 }

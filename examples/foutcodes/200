@@ -1,0 +1,6 @@
+{
+  "@context": "https://raw.githubusercontent.com/bp4mc2/bp4mc2-gco/master/model/context",
+  "type": "Concept",
+  "naam": "200 Ok",
+  "code": "200"
+}

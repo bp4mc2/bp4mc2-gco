@@ -1,6 +1,6 @@
 {
   "@context": {
-    "id": "@id",
+    "url": "@id",
     "type": "@type",
     "sitemap": "@graph",
     "sitemapindex": "@graph",
@@ -9,6 +9,7 @@
     "laatsteWijziging": "dct:modified",
     "Concept": "skos:Concept",
     "naam": "skos:prefLabel",
-    "code": "skos:notation"
+    "code": "skos:notation",
+    "definitie": "skos:definition"
   }
 }

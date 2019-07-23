@@ -1,0 +1,13 @@
+{
+  "@context": "https://raw.githubusercontent.com/bp4mc2/bp4mc2-gco/master/model/context",
+  "sitemapindex": [
+    {
+      "url": "https://raw.githubusercontent.com/bp4mc2/bp4mc2-gco/master/examples/sitemap/waardelijsten/activiteiten",
+      "laatsteWijziging": "2018-10-01T18:23:17+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/bp4mc2/bp4mc2-gco/master/examples/sitemap/waardelijsten/foutcodes",
+      "laatsteWijziging": "2014-10-01T18:23:17+00:00"
+    }
+  ]
+}

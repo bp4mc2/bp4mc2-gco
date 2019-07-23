@@ -152,7 +152,7 @@ catalogus:Dataset a sh:NodeShape;
   sh:property catalogus:Dataset_versionInfo;
   sh:property catalogus:Dataset_versionNotes;
   sh:property catalogus:Dataset_hasQualityAnnotation;
-  sh:property catalogus:Dataset_theme;
+  sh:property catalogus:Dataset_subject;
 .
 catalogus:InformatieproductDataset a sh:NodeShape;
   sh:name "Informatieproduct (dcat:Dataset)";
@@ -628,9 +628,9 @@ catalogus:Dataset_typeInformatieproduct a sh:PropertyShape;
   sh:minCount 1;
   sh:maxCount 1;
 .
-catalogus:Dataset_theme a sh:PropertyShape;
-  sh:name "dcat:theme";
-  sh:path dcat:theme;
+catalogus:Dataset_subject a sh:PropertyShape;
+  sh:name "dct:subject";
+  sh:path dct:subject;
   sh:class skos:Concept;
 .
 

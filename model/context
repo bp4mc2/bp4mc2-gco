@@ -1,8 +1,13 @@
 {
   "@context": {
     "id": "@id",
+    "type": "@type",
     "sitemapindex": "@graph",
     "dct": "http://purl.org/dc/terms/",
-    "modified": "dct:modified"
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "laatsteWijziging": "dct:modified",
+    "Concept": "skos:Concept",
+    "naam": "skos:prefLabel",
+    "code": "skos:notation"
   }
 }

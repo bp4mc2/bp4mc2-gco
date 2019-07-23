@@ -3,11 +3,11 @@
   "sitemap": [
     {
       "url": "https://raw.githubusercontent.com/bp4mc2/bp4mc2-gco/master/examples/waardelijsten/activiteiten",
-      "laatsteWijziging": "2014-10-01T18:23:17+00:00"
-    }
+      "laatsteWijziging": "2018-10-01T18:23:17+00:00"
+    },
     {
       "url": "https://raw.githubusercontent.com/bp4mc2/bp4mc2-gco/master/examples/concepten/ExploiterenJachthaven",
-      "laatsteWijziging": "2014-10-01T18:23:17+00:00"
+      "laatsteWijziging": "2018-10-01T18:23:17+00:00"
     }
   ]
 }

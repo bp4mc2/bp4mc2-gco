@@ -1,0 +1,13 @@
+{
+  "@context": "https://raw.githubusercontent.com/bp4mc2/bp4mc2-gco/master/model/context",
+  "sitemapindex": [
+    {
+      "id": "https://catalogus.omgevingswet.overheid.nl/publiek/api/v1/sitemap/waardelijst/1",
+      "laatsteWijziging": "2004-10-01T18:23:17+00:00"
+    },
+    {
+      "id": "https://catalogus.omgevingswet.overheid.nl/publiek/api/v1/sitemap/waardelijst/2",
+      "laatsteWijziging": "2014-10-01T18:23:17+00:00"
+    }
+  ]
+}

@@ -2,13 +2,17 @@ Onderstaand figuur geeft aan hoe de opslagstructuur van een informatieproduct (I
 
 ![](../diagram/catalogusmodel-informatiemodelasset.png)
 
-Dit is een vrij complex model, terwijl feitelijk het opslaan en wijzigen van een IP in de meeste gevallen een stuk eenvoudiger kan. Vandaar de ontwikkeling van een "light" versie van de Informatieproduct API (ip-api-light).
+Dit is een vrij complex model, terwijl feitelijk het opslaan en wijzigen van een IP in de meeste gevallen een stuk eenvoudiger kan. Vandaar de ontwikkeling van een "light" versie van de Informatieproduct API (ip-api-light). Met deze light-variant kan een nieuw informatieproduct geregistreerd worden met de aanroep van 1 API POST, of gewijzigd met 1 API PUT en de betreffende gegevens kunnen opgehaald worden met 1 API GET. Daarbij zijn de volgende beperkingen aangebracht:
+- Een IP wordt geserveerd door maximaal één DataService, en wel een REST API;
+- Een IP kan maximaal één model hebben;
+- Er kan maar 1 kwaliteitsannotatie aangemaakt worden voor elk van de beschreven kwaliteitsdimensies;
+- De kwaliteitsdimensies zijn gefixeerd: alleen de hieronder beschreven kwaliteitsdimensies worden ondersteund.
 
 Onderstaande tabel geeft aan hoe deze API in elkaar zit.
 
 |Term|Uitleg|Pad|Waardetype|
 |----|------|---|----------|
-|-|Type (automatisch)|`rdf:type = adms:Asset`|owl:Class|
+|-|Type (automatisch)|`rdf:type = adms:Dataset`|owl:Class|
 |-|Soort (automatisch)|`dct:type = catalogus:InformatieproductDataset`|skos:Concept|
 |-|Publisher (automatisch)|`dct:publisher`|org:Organization|
 |label|Naam van het IP|`rdfs:label`|rdfs:Literal|
@@ -16,6 +20,12 @@ Onderstaande tabel geeft aan hoe deze API in elkaar zit.
 |onderwerp|De concept(en) waar de dataset over gaat|`dct:subject`|skos:Concept|
 |website|De website voor dit IP|`dcat:landingPage`|foaf:Document|
 |beschrijving|Beschrijving van het IP|`dct:description`|rdfs:Literal|
+|-|Type model (automatisch)|`rdf:type = adms:Asset`|owl:Class|
+|-|Soort model (automatisch)|`dct:type = catalogus:InformatiemodelAsset`|skos:Concept|
+|modelLabel|Naam van het model van het IP|`wdrs:describedBy/rdfs:label`|rdfs:Literal|
+|modelTitel|Titel van het model van het IP|`wdrs:describedBy/dct:title`|rdfs:Literal|
+|modelWebsite|De website voor het model van dit IP|`wdrs:describedBy/dcat:landingPage`|foaf:Document|
+|modelBeschrijving|Beschrijving van het model van het IP|`wdrs:describedBy/dct:description`|rdfs:Literal|
 |-|Endpoint type (automatisch)|`^dcat:servesDataset/rdf:type = dcat:DataService`|owl:Class|
 |-|Endpoint soort (automatisch)|`^dcat:servesDataset/dct:type = catalogus:RESTAPI`|skos:Concept|
 |endpointURL|URL voor primaire endpoint van dit IP|`^dcat:servesDataset/endpointURL`|rdfs:Resource|

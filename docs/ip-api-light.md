@@ -17,7 +17,7 @@ Onderstaande tabel geeft aan hoe deze API in elkaar zit.
 |-|Publisher (automatisch)|`dct:publisher`|org:Organization|
 |label|Naam van het IP|`rdfs:label`|rdfs:Literal|
 |titel|Titel van het IP|`dct:title`|rdfs:Literal|
-|onderwerp|De concept(en) waar de dataset over gaat|`dct:subject`|skos:Concept|
+|onderwerp|De concept(en) waar het IP over gaat|`dct:subject`|skos:Concept|
 |website|De website voor dit IP|`dcat:landingPage`|foaf:Document|
 |beschrijving|Beschrijving van het IP|`dct:description`|rdfs:Literal|
 |-|Type model (automatisch)|`rdf:type = adms:Asset`|owl:Class|

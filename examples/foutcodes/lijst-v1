@@ -1,0 +1,17 @@
+{
+  "@context": "https://raw.githubusercontent.com/bp4mc2/bp4mc2-gco/master/model/context",
+  "waardelijst": [
+    {
+      "id": "http://bp4mc2.org/examples/gco/id/foutcode/200"
+      "type": "Concept",
+      "naam": "200 OK",
+      "code": "200"
+    },
+    {
+      "id": "http://bp4mc2.org/examples/gco/id/foutcode/404"
+      "type": "Concept",
+      "naam": "404 Ok",
+      "code": "404 Not Found"
+    }
+  ]
+}

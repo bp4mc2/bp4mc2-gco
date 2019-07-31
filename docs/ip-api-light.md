@@ -20,25 +20,26 @@ Onderstaande tabel geeft aan hoe deze API in elkaar zit.
 |onderwerp|De concept(en) waar het IP over gaat|`dct:subject`|skos:Concept|
 |website|De website voor dit IP|`dcat:landingPage`|foaf:Document|
 |beschrijving|Beschrijving van het IP|`dct:description`|rdfs:Literal|
-|-|Type model (automatisch)|`rdf:type = adms:Asset`|owl:Class|
-|-|Soort model (automatisch)|`dct:type = catalogus:InformatiemodelAsset`|skos:Concept|
-|modelLabel|Naam van het model van het IP|`wdrs:describedBy/rdfs:label`|rdfs:Literal|
-|modelTitel|Titel van het model van het IP|`wdrs:describedBy/dct:title`|rdfs:Literal|
-|modelWebsite|De website voor het model van dit IP|`wdrs:describedBy/dcat:landingPage`|foaf:Document|
-|modelBeschrijving|Beschrijving van het model van het IP|`wdrs:describedBy/dct:description`|rdfs:Literal|
-|-|Endpoint type (automatisch)|`^dcat:servesDataset/rdf:type = dcat:DataService`|owl:Class|
-|-|Endpoint soort (automatisch)|`^dcat:servesDataset/dct:type = catalogus:RESTAPI`|skos:Concept|
-|endpointURL|URL voor primaire endpoint van dit IP|`^dcat:servesDataset/endpointURL`|rdfs:Resource|
-|endpointDescription|URL van de beschrijving van dit endpoint (bv OAS)|`^dcat:servesDataset/endpointDescription`|rdfs:Resource|
-|-|Type kwaliteitsannotatie (automatisch)|`dqv:hasQualityAnnotation/rdf:type = dqv:QualityAnnotation`|owl:Class|
-|-|Kwaliteitsannotatie-motivatie (automatisch)|`dqv:hasQualityAnnotation/oa:motivatedBy = dqv:qualityAssessment`|oa:Motivation|
-|-|Kwaliteitsannotatie-dimensie (automatisch)|`dqv:hasQualityAnnotation/dqv:inDimension`|dqv:Dimension|
-|actualiteit|Mate van actualiteit|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Actualiteit]/oa:hasBodyValue`|rdfs:Literal|
-|begrijpelijkheid|Mate van begrijpelijkheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Begrijpelijkheid]/oa:hasBodyValue`|rdfs:Literal|
-|compleetheid|Mate van compleetheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Compleetheid]/oa:hasBodyValue`|rdfs:Literal|
-|compliance|Compliance van het IP|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Compliance]/oa:hasBodyValue`|rdfs:Literal|
-|consistentie|Mate van consistentie|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Consistentie]/oa:hasBodyValue`|rdfs:Literal|
-|nauwkeurigheid|Mate van nauwkeurigheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Nauwkeurigheid]/oa:hasBodyValue`|rdfs:Literal|
-|pausibiliteit|Mate van pausibiliteit|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Pausibliteit]/oa:hasBodyValue`|rdfs:Literal|
-|precisie|Mate van precisie|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Precisie]/oa:hasBodyValue`|rdfs:Literal|
-|traceerbaarheid|Mate van traceerbaarheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Traceerbaarheid]/oa:hasBodyValue`|rdfs:Literal|
+|onderwerpen|Opsomming van URI's van begrippen die onderwerp zijn van dit IP|`dct:subject`|array of skos:Concept|
+|/model/|Type model (automatisch)|`rdf:type = adms:Asset`|owl:Class|
+|/model/|Soort model (automatisch)|`dct:type = catalogus:InformatiemodelAsset`|skos:Concept|
+|/model/label|Naam van het model van het IP|`wdrs:describedBy/rdfs:label`|rdfs:Literal|
+|/model/titel|Titel van het model van het IP|`wdrs:describedBy/dct:title`|rdfs:Literal|
+|/model/website|De website voor het model van dit IP|`wdrs:describedBy/dcat:landingPage`|foaf:Document|
+|/model/beschrijving|Beschrijving van het model van het IP|`wdrs:describedBy/dct:description`|rdfs:Literal|
+|/service/|Endpoint type (automatisch)|`^dcat:servesDataset/rdf:type = dcat:DataService`|owl:Class|
+|/service/|Endpoint soort (automatisch)|`^dcat:servesDataset/dct:type = catalogus:RESTAPI`|skos:Concept|
+|/service/|endpointURL|URL voor primaire endpoint van dit IP|`^dcat:servesDataset/endpointURL`|rdfs:Resource|
+|/service/|endpointDescription|URL van de beschrijving van dit endpoint (bv OAS)|`^dcat:servesDataset/endpointDescription`|rdfs:Resource|
+|/kwaliteit/|Type kwaliteitsannotatie (automatisch)|`dqv:hasQualityAnnotation/rdf:type = dqv:QualityAnnotation`|owl:Class|
+|/kwaliteit/|Kwaliteitsannotatie-motivatie (automatisch)|`dqv:hasQualityAnnotation/oa:motivatedBy = dqv:qualityAssessment`|oa:Motivation|
+|/kwaliteit/|Kwaliteitsannotatie-dimensie (automatisch)|`dqv:hasQualityAnnotation/dqv:inDimension`|dqv:Dimension|
+|/kwaliteit/actualiteit|Mate van actualiteit|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Actualiteit]/oa:hasBodyValue`|rdfs:Literal|
+|/kwaliteit/begrijpelijkheid|Mate van begrijpelijkheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Begrijpelijkheid]/oa:hasBodyValue`|rdfs:Literal|
+|/kwaliteit/compleetheid|Mate van compleetheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Compleetheid]/oa:hasBodyValue`|rdfs:Literal|
+|/kwaliteit/compliance|Compliance van het IP|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Compliance]/oa:hasBodyValue`|rdfs:Literal|
+|/kwaliteit/consistentie|Mate van consistentie|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Consistentie]/oa:hasBodyValue`|rdfs:Literal|
+|/kwaliteit/nauwkeurigheid|Mate van nauwkeurigheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Nauwkeurigheid]/oa:hasBodyValue`|rdfs:Literal|
+|/kwaliteit/pausibiliteit|Mate van pausibiliteit|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Pausibliteit]/oa:hasBodyValue`|rdfs:Literal|
+|/kwaliteit/precisie|Mate van precisie|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Precisie]/oa:hasBodyValue`|rdfs:Literal|
+|/kwaliteit/traceerbaarheid|Mate van traceerbaarheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Traceerbaarheid]/oa:hasBodyValue`|rdfs:Literal|

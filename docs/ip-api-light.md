@@ -15,6 +15,7 @@ Onderstaande tabel geeft aan hoe deze API in elkaar zit.
 |-|Type (automatisch)|`rdf:type = adms:Dataset`|owl:Class|
 |-|Soort (automatisch)|`dct:type = catalogus:InformatieproductDataset`|skos:Concept|
 |-|Publisher (automatisch)|`dct:publisher`|org:Organization|
+|term|(Tijdelijk) term t.b.v. de URI-generatie (wordt niet opgeslagen)|-|rdfs:Literal|
 |label|Naam van het IP|`rdfs:label`|rdfs:Literal|
 |titel|Titel van het IP|`dct:title`|rdfs:Literal|
 |onderwerp|De concept(en) waar het IP over gaat|`dct:subject`|skos:Concept|
@@ -43,3 +44,14 @@ Onderstaande tabel geeft aan hoe deze API in elkaar zit.
 |/kwaliteit/pausibiliteit|Mate van pausibiliteit|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Pausibliteit]/oa:hasBodyValue`|rdfs:Literal|
 |/kwaliteit/precisie|Mate van precisie|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Precisie]/oa:hasBodyValue`|rdfs:Literal|
 |/kwaliteit/traceerbaarheid|Mate van traceerbaarheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Traceerbaarheid]/oa:hasBodyValue`|rdfs:Literal|
+
+De volgende URI-templates worden gehanteerd:
+
+|Klasse / NodeShape|URI-template|
+|------------------|------------|
+|Informatieproduct|http://{$domein}/id/informatieproduct/{$term}|
+|Informatiemodel|http://{$domein}/id/informatiemodel/{$term}|
+|Dataservice|http://{$domein}/id/dataservice/{term}|
+|QualityAnnotation|http://{domein}/id/qualityannotation/{$term}-{$dimensie}|
+
+Hierbij staat {$domein} voor het betreffende domein waarbinnen het informatieproduct valt, {$term} staat voor de waarde van het API veld `term` (zie in de tabel hierboven) en $dimensie voor de naam van de dimensie in lowercase (dus bv `consistentie`).

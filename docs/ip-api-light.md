@@ -51,7 +51,7 @@ De volgende URI-templates worden gehanteerd:
 |------------------|------------|
 |Informatieproduct|`http://{$domein}/id/informatieproduct/{$term}`|
 |Informatiemodel|`http://{$domein}/id/informatiemodel/{$term}`|
-|Dataservice|`http://{$domein}/id/dataservice/{term}`|
+|Dataservice|`http://{$domein}/id/dataservice/{$term}`|
 |QualityAnnotation|`http://{$domein}/id/qualityannotation/{$term}-{$dimensie}`|
 
 Hierbij staat `{$domein}` voor het betreffende domein waarbinnen het informatieproduct valt, `{$term}` staat voor de waarde van het API veld `term` (zie in de tabel hierboven) en `$dimensie` voor de naam van de dimensie in lowercase (dus bv `consistentie`).

@@ -483,7 +483,7 @@ RESPONSE
 ### Publishing a resource that has been published before
 Publishing a resource for the first time, only changes the catalog record that is published. In the simple system history model, you can't publish a resource for a second time: the catalog record remains published. In the transaction system history model you can publish a resource for a second time. After publishing the new catalog record, the old published record will get the status `adms:Withdrawn` and a `prov:invalidatedAtTime`.
 
-***!!!![TODO]: Moet prov:invalidatedAtTime wel gezet worden? Het lijkt raar dat deze "met terugwerkende kracht" wordt gezet op tijdstip 06 en niet op tijdstip 07 ????***
+The value for `prov:invalidatedAtTime` is always the system time. This means that the `prov:invalidatedAtTime` for the first published catalog record is actually after the `prov:generatedAtTime` of the second published catalog record. This indicates that in this time period, two versions of a catalog record exist.
 
 ```
 http POST http://catalog.org/api/v1/publish?subject=http://catalog.org/id/concept/some-concept
@@ -515,7 +515,7 @@ STORAGE RESULT:
     adms:status admsstatus:Withdrawn;                                                #NEW
     prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
     prov:wasRevisionOf <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept>
-    prov:invalidatedAtTime "2019-01-06T12:00:00.000"^^xsd:dateTime;                  #NEW
+    prov:invalidatedAtTime "2019-01-07T12:00:00.000"^^xsd:dateTime;                  #NEW
   .
   <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept> a prov:Entity;
     prov:generatedAtTime "2019-01-02T12:00:00.000"^^xsd:dateTime;

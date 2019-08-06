@@ -495,7 +495,7 @@ STORAGE RESULT:
   .
   <http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept>
     adms:status admsstatus:Withdrawn;
-    prov:invalidatedAtTime "2019-01-06T12:00:00.000"^^xsd:dateTime;
+    prov:invalidatedAtTime "2019-01-07T12:00:00.000"^^xsd:dateTime;
   .
 }
 <http://catalog.org/data> {
@@ -533,21 +533,65 @@ STORAGE RESULT:
 }
 ```
 
+### Retrieving a catalog record from the past
+After system time 2019-01-07T12:00:00.000, the most recent catalog record is the same as the most recent completed catalog record. Sometimes it might be necessary to retrieve a catalog record as it was retrieved at a point in the past. For example at system time 2019-01-07T12:00:00.000 we will get the following result for the retrieval of the most recent completed catalog record:
+
+```
+http GET http://catalog.org/id/concept/some-concept?status=Completed
+
+RESPONSE:
+<http://catalog.org/id/concept/some-concept> a skos:Concept;
+  rdfs:label "Some concept.."@en;
+  rdfs:comment "A comment about some concept"@en;
+  rdfs:seeAlso <http://catalog.org/id/concept/some-other-concept>;
+.
+<http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept> a prov:Entity;
+  prov:generatedAtTime "2019-01-06T12:00:00.000"^^xsd:dateTime;
+  adms:status admsstatus:Completed;
+  prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+  prov:wasRevisionOf <http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept>
+.
+```
+
+...but until system time 2019-01-07T12:00:00.000 we would get another result. To get the "old" completed catalog record, we need a filter:
+
+```
+http GET http://catalog.org/id/concept/some-concept?status=Completed&retrievedAt=2019-01-07T10:00:00.000
+
+<http://catalog.org/id/concept/some-concept> a skos:Concept;
+  rdfs:label "Some concept.."@en;
+  rdfs:comment "A comment about some concept"@en;
+.
+<http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept> a prov:Entity;
+  prov:generatedAtTime "2019-01-04T12:00:00.000"^^xsd:dateTime;
+  adms:status admsstatus:Completed;
+  prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+  prov:wasRevisionOf <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept>
+.
+```
+
 ## Valid History
 
-A more complex history model can be obtained by adding "data validity" to a transaction system history model. Validity is always about the catalog record itself: at what point in time was the catalog record considered "valid".
+A more complex history model can be obtained by adding temporal characteristics to the catalog record. This results in a valid & system history model. A valid & system history model implies a transactional history model. The temporal characteristics are always about the catalog record itself: at what point in time was the catalog record considered "valid".
 
-By adding a `dct:temporal` statement to the catalog record, we can state at which point in time the catalog record was valid and at which time the catalog record wasn't valid any more.
+By adding a `dct:temporal` statement to the catalog record, we can state at which point in time the catalog record was valid and at which time the catalog record wasn't valid any more. These temporal characteristics are an extension of the status of a catalog record. A catalog record can be completed, but not yet valid. Any catalog record that is made valid is also regarded as completed. It is not possible to create a catalog record that is valid but not yet published.
 
 ![](../diagram/catalogusmodel-catalogrecord-validity.png)
+
+The introduction of valid history created to kinds of history: valid history and system history. At any point in system-time multiple catalog records could exists, each with its own temporal characteristics. Only one of them is "the most recent" in system-time. In valid-time only one catalog record should be valid at any point in valid-time.
+
+Marking a catalog record as valid will result in a couple of actions:
+
+1. The status of the catalog record will be set to completed, if it is not already completed;
+2. Any other catalog record that is completed but not marked as valid, is withdrawn (as a result of action 1);
+3. The catalog record receives a `dct:temporal` with the start date of the validity;
+4. Any old catalog record that is valid in the period of this catalog record will receive an end date of validity, and may also receive a start date of validity. If the validity of an old catalog record completely overlaps the validity of the new catalog record, the validity period of the old catalog record is set to zero (the enddata is set to the startdate).
 
 ### API for a validity history model
 A validity history model implies a transaction model, it also includes system history.
 
 #### Mark as valid
 Making the most recent catalog record valid from december first, 2018 at system time 2019-01-08T12:00:00.000. Mark that the validity of the catalog record actually is before it was initially created. This is quite common. The oposite can also occur.
-
-***!!!![TODO]: mag je wel een catalog record valid maken nadat deze completed is??? Moet er dan niet een nieuw catalog record komen?***
 
 ```
 http POST http://catalog.org/api/v1/markvalid?subject=http://catalog.org/id/concept/some-concept&start=2018-12-01
@@ -556,7 +600,7 @@ STORAGE RESULT:
 <http://catalog.org/data/transaction/2019-01-08T12:00:00.000> {
   <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept>
     dct:temporal [
-      dcmiperiod:start "2019-12-01"^^xsd:date;
+      dcmiperiod:start "2018-12-01"^^xsd:date;
     ];
   .
 }
@@ -569,7 +613,7 @@ STORAGE RESULT:
   <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept> a prov:Entity;
     prov:generatedAtTime "2019-01-06T12:00:00.000"^^xsd:dateTime;
     dct:temporal [                                                                   #NEW
-      dcmiperiod:start "2019-12-01"^^xsd:date;                                       #NEW
+      dcmiperiod:start "2018-12-01"^^xsd:date;                                       #NEW
     ];                                                                               #NEW
     adms:status admsstatus:Completed;
     prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
@@ -580,7 +624,7 @@ STORAGE RESULT:
     adms:status admsstatus:Withdrawn;
     prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
     prov:wasRevisionOf <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept>
-    prov:invalidatedAtTime "2019-01-06T12:00:00.000"^^xsd:dateTime;
+    prov:invalidatedAtTime "2019-01-07T12:00:00.000"^^xsd:dateTime;
   .
   <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept> a prov:Entity;
     prov:generatedAtTime "2019-01-02T12:00:00.000"^^xsd:dateTime;
@@ -598,4 +642,272 @@ STORAGE RESULT:
 }
 ```
 
-No new catalog record is created, the most recent is used. The status of the catalog record isn't changed. So it is possible for a catalog record to be valid, but not yet completed and visa versa.
+#### Updating a catalog record after it was marked valid
+This is actually the same as updating a catalog record after it was completed. We add a dutch label to the resource at system time 2019-01-09T12:00:00.000. We also delete the `rdfs:seeAlso` statement.
+
+```
+http PUT http://catalog.org/id/concept/some-concept
+
+REQUEST BODY:
+<http://catalog.org/id/concept/some-concept> a skos:Concept;
+  rdfs:label "Some concept.."@en;
+  rdfs:label "Enig begrip.."@nl;
+  rdfs:comment "A comment about some concept"@en;
+.
+
+STORAGE RESULT:
+<http://catalog.org/data/transaction/2019-01-09T12:00:00.000> {
+  <http://catalog.org/id/concept/some-concept> a skos:Concept;
+    rdfs:label "Some concept.."@en;
+    rdfs:label "Enig begrip.."@nl;
+    rdfs:comment "A comment about some concept"@en;
+  .
+  <http://catalog.org/doc/2019-01-09T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-09T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:UnderDevelopment;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept>
+  .
+}
+<http://catalog.org/data> {
+  <http://catalog.org/id/concept/some-concept> a skos:Concept; #NEW
+    rdfs:label "Some concept.."@en;                            #NEW
+    rdfs:label "Enig begrip.."@nl;                             #NEW
+    rdfs:comment "A comment about some concept"@en;            #NEW
+  .
+  <http://catalog.org/doc/2019-01-09T12:00:00.000/some-concept> a prov:Entity;       #NEW
+    prov:generatedAtTime "2019-01-09T12:00:00.000"^^xsd:dateTime;                    #NEW
+    adms:status admsstatus:UnderDevelopment;                                         #NEW
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;              #NEW
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept> #NEW
+  .
+  <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-06T12:00:00.000"^^xsd:dateTime;
+    dct:temporal [
+      dcmiperiod:start "2018-12-01"^^xsd:date;
+    ];
+    adms:status admsstatus:Completed;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept>
+  .
+  <http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-04T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:Withdrawn;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept>
+    prov:invalidatedAtTime "2019-01-07T12:00:00.000"^^xsd:dateTime;
+  .
+  <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-02T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:UnderDevelopment;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-01T12:00:00.000/some-concept>
+    prov:invalidatedAtTime "2019-01-03T12:00:00.000"^^xsd:dateTime;
+  .
+  <http://catalog.org/doc/2019-01-01T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-01T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:UnderDevelopment;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>
+    prov:invalidatedAtTime "2019-01-02T12:00:00.000"^^xsd:dateTime;
+  .
+}
+```
+
+#### Publishing a catalog record, with a valid catalog record already available
+In the case of the transaction system history model, the second publishing of a catalog record results in the withdrawal of the first published catalog record. In the case of the valid history model, this will **only** happen when such a published catalog record has not yet made valid: valid catalog records **cannot** been withdrawn, they can only made invalid by making some other catalog record valid in the same period.
+
+At system time 2019-01-10T12:00:00.000 we publish the most recent catalog record:
+
+```
+http POST http://catalog.org/api/v1/publish?subject=http://catalog.org/id/concept/some-concept
+
+STORAGE RESULT:
+<http://catalog.org/data/transaction/2019-01-10T12:00:00.000> {
+  <http://catalog.org/doc/2019-01-09T12:00:00.000/some-concept> a prov:Entity;
+    adms:status admsstatus:Completed;
+  .
+}
+<http://catalog.org/data> {
+  <http://catalog.org/id/concept/some-concept> a skos:Concept;
+    rdfs:label "Some concept.."@en;
+    rdfs:label "Enig begrip.."@nl;
+    rdfs:comment "A comment about some concept"@en;
+  .
+  <http://catalog.org/doc/2019-01-09T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-09T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:Completed;                                                #NEW
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept>
+  .
+  <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-06T12:00:00.000"^^xsd:dateTime;
+    dct:temporal [
+      dcmiperiod:start "2018-12-01"^^xsd:date;
+    ];
+    adms:status admsstatus:Completed;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept>
+  .
+  <http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-04T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:Withdrawn;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept>
+    prov:invalidatedAtTime "2019-01-07T12:00:00.000"^^xsd:dateTime;
+  .
+  <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-02T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:UnderDevelopment;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-01T12:00:00.000/some-concept>
+    prov:invalidatedAtTime "2019-01-03T12:00:00.000"^^xsd:dateTime;
+  .
+  <http://catalog.org/doc/2019-01-01T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-01T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:UnderDevelopment;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>
+    prov:invalidatedAtTime "2019-01-02T12:00:00.000"^^xsd:dateTime;
+  .
+}
+```
+
+#### Updating a catalog record after it was marked valid and another was published
+To have full understanding about the complexity, we update the catalog record again: we delete the dutch label at system time 2019-01-11T12:00:00.000:
+
+```
+http PUT http://catalog.org/id/concept/some-concept
+
+REQUEST BODY:
+<http://catalog.org/id/concept/some-concept> a skos:Concept;
+  rdfs:label "Some concept.."@en;
+  rdfs:comment "A comment about some concept"@en;
+.
+
+STORAGE RESULT:
+<http://catalog.org/data/transaction/2019-01-11T12:00:00.000> {
+  <http://catalog.org/id/concept/some-concept> a skos:Concept;
+    rdfs:label "Some concept.."@en;
+    rdfs:comment "A comment about some concept"@en;
+  .
+  <http://catalog.org/doc/2019-01-11T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-11T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:UnderDevelopment;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-09T12:00:00.000/some-concept>
+  .
+}
+<http://catalog.org/data> {
+  <http://catalog.org/id/concept/some-concept> a skos:Concept; #NEW
+    rdfs:label "Some concept.."@en;                            #NEW
+    rdfs:comment "A comment about some concept"@en;            #NEW
+  .
+  <http://catalog.org/doc/2019-01-11T12:00:00.000/some-concept> a prov:Entity;       #NEW
+    prov:generatedAtTime "2019-01-11T12:00:00.000"^^xsd:dateTime;                    #NEW
+    adms:status admsstatus:UnderDevelopment;                                         #NEW
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;              #NEW
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-09T12:00:00.000/some-concept> #NEW
+  .
+  <http://catalog.org/doc/2019-01-09T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-09T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:Completed;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept>
+  .
+  <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-06T12:00:00.000"^^xsd:dateTime;
+    dct:temporal [
+      dcmiperiod:start "2018-12-01"^^xsd:date;
+    ];
+    adms:status admsstatus:Completed;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept>
+  .
+  <http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-04T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:Withdrawn;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept>
+    prov:invalidatedAtTime "2019-01-07T12:00:00.000"^^xsd:dateTime;
+  .
+  <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-02T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:UnderDevelopment;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-01T12:00:00.000/some-concept>
+    prov:invalidatedAtTime "2019-01-03T12:00:00.000"^^xsd:dateTime;
+  .
+  <http://catalog.org/doc/2019-01-01T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-01T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:UnderDevelopment;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>
+    prov:invalidatedAtTime "2019-01-02T12:00:00.000"^^xsd:dateTime;
+  .
+}
+```
+
+#### Marking the most recent catalog record valid
+At system time 2019-01-11T12:00:00.000 we have two catalog records that could be marked valid: one has status "Completed" and one has status "UnderDevelopment". As the `markedvalid` API will by default use the most recent catalog record, only one with status "UnderDevelopment" will be used. You will need a filter to mark the one with status "Completed" (`?status=Completed`). We will mark the most recent catalog record as valid, because this is the most complex situation, at system time 2019-01-12T12:00:00.000:
+
+```
+http POST http://catalog.org/api/v1/markvalid?subject=http://catalog.org/id/concept/some-concept&start=2019-01-01
+
+<http://catalog.org/data/transaction/2019-01-12T12:00:00.000> {
+}
+<http://catalog.org/data> {
+  <http://catalog.org/id/concept/some-concept> a skos:Concept;
+    rdfs:label "Some concept.."@en;
+    rdfs:comment "A comment about some concept"@en;
+  .
+  <http://catalog.org/doc/2019-01-11T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-11T12:00:00.000"^^xsd:dateTime;
+    dct:temporal [                                                                   #NEW
+      dcmiperiod:start "2019-01-01"^^xsd:date;                                       #NEW
+    ];                                                                               #NEW
+    adms:status admsstatus:Completed;                                                #NEW
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-09T12:00:00.000/some-concept>
+  .
+  <http://catalog.org/doc/2019-01-09T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-09T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:Withdrawn;                                                #NEW
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept>
+    prov:invalidatedAtTime "2019-01-12T12:00:00.000"^^xsd:dateTime;                  #NEW
+  .
+  <http://catalog.org/doc/2019-01-06T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-06T12:00:00.000"^^xsd:dateTime;
+    dct:temporal [
+      dcmiperiod:start "2018-12-01"^^xsd:date;
+      dcmiperiod:end "2019-01-01"^^xsd:date;                                         #NEW
+    ];
+    adms:status admsstatus:Completed;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept>
+  .
+  <http://catalog.org/doc/2019-01-04T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-04T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:Withdrawn;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept>
+    prov:invalidatedAtTime "2019-01-07T12:00:00.000"^^xsd:dateTime;
+  .
+  <http://catalog.org/doc/2019-01-02T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-02T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:UnderDevelopment;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>;
+    prov:wasRevisionOf <http://catalog.org/doc/2019-01-01T12:00:00.000/some-concept>
+    prov:invalidatedAtTime "2019-01-03T12:00:00.000"^^xsd:dateTime;
+  .
+  <http://catalog.org/doc/2019-01-01T12:00:00.000/some-concept> a prov:Entity;
+    prov:generatedAtTime "2019-01-01T12:00:00.000"^^xsd:dateTime;
+    adms:status admsstatus:UnderDevelopment;
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>
+    prov:invalidatedAtTime "2019-01-02T12:00:00.000"^^xsd:dateTime;
+  .
+}
+```
+
+Three catalog records are affected by the valid-marking:
+1. The catalog record that was valid from december first 2018 is no longer valid from januari first 2019;
+2. The catalog record that was completed, but not marked valid is withdrawn (and deleted);
+3. The catalog record that was made valid is set to completed, and made valid from januari first 2019.

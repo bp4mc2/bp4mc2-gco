@@ -45,7 +45,10 @@ The simple history model only tracks the changes made to a catalog record. It do
 
 ### API for the simple history model
 
-All examples state with the http request operation, including the request body when needed, followed by the full storage result. All statements are stored in a named graph `<http://catalog.org/data`. New statements are marked with `#NEW` to make it more clear what the actual operation does. The request body is depicted in the turtle format, the storage result is depicted in the trig format.
+All examples state with the http request operation, including the request body when needed, followed by the full storage result. All statements are stored in a named graph `<http://catalog.org/data`. New statements are marked with `#NEW` to make it more clear what the actual operation does. The request body is depicted in the turtle format, the storage result is depicted in the trig format. The figure below depicts all six calls T01-T06.
+
+![](diagrams/simple-history-model.png)
+
 
 #### T01 Simple: creating a resource
 Creating "Some concept", a `skos:Concept` at system time 2019-01-01T12:00:00.000
@@ -268,6 +271,10 @@ In the following sections, we will "replay" the six transaction steps from the s
 
 Statements in the transaction graph are **never** updated or deleted. In the following sections, only the statements that were added tot the transaction graph are mentioned.
 
+The figure below depicts all seven calls T01-T07.
+
+![](diagrams/transaction-history-model.png)
+
 #### T01 Creating a resource
 Creating "Some concept", a `skos:Concept` at system time 2019-01-01T12:00:00.000
 
@@ -480,7 +487,7 @@ RESPONSE
 .
 ```
 
-### T07 Publishing a resource that has been published before
+#### T07 Publishing a resource that has been published before
 Publishing a resource for the first time, only changes the catalog record that is published. In the simple system history model, you can't publish a resource for a second time: the catalog record remains published. In the transaction system history model you can publish a resource for a second time. After publishing the new catalog record, the old published record will get the status `adms:Withdrawn` and a `prov:invalidatedAtTime`.
 
 The value for `prov:invalidatedAtTime` is always the system time. This means that the `prov:invalidatedAtTime` for the first published catalog record is actually after the `prov:generatedAtTime` of the second published catalog record. This indicates that in this time period, two versions of a catalog record exist.
@@ -589,6 +596,10 @@ Marking a catalog record as valid will result in a couple of actions:
 
 ### API for a validity history model
 A validity history model implies a transaction model, it also includes system history.
+
+The figure below depicts all five calls T08-T12.
+
+![](diagrams/valid-history-model.png)
 
 #### T08 Mark as valid
 Making the most recent catalog record valid from december first, 2018 at system time 2019-01-08T12:00:00.000. Mark that the validity of the catalog record actually is before it was initially created. This is quite common. The oposite can also occur.
@@ -911,3 +922,10 @@ Three catalog records are affected by the valid-marking:
 1. The catalog record that was valid from december first 2018 is no longer valid from januari first 2019;
 2. The catalog record that was completed, but not marked valid is withdrawn (and deleted);
 3. The catalog record that was made valid is set to completed, and made valid from januari first 2019.
+
+#### TODO:
+
+- Withdraw a catalog record: DELETE
+- Mark a catalog record as invalid: POST (this is not a delete, because the prov:invalidatedAtTime is not set!) This also means that you cannot withdraw a catalog record that is already valid: not DELETE possible for such an item!
+- Mark a catalog record as invalid will not "revalid" already existing catalog records.
+- Making API calls for the catalog records themselves, instead of the topic of the catalog record.

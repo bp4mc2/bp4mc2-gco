@@ -47,7 +47,7 @@ The simple history model only tracks the changes made to a catalog record. It do
 
 All examples state with the http request operation, including the request body when needed, followed by the full storage result. All statements are stored in a named graph `<http://catalog.org/data`. New statements are marked with `#NEW` to make it more clear what the actual operation does. The request body is depicted in the turtle format, the storage result is depicted in the trig format.
 
-#### Creating a resource
+#### T01 Simple: creating a resource
 Creating "Some concept", a `skos:Concept` at system time 2019-01-01T12:00:00.000
 
 ```
@@ -60,18 +60,18 @@ REQUEST BODY:
 
 STORAGE RESULT:
 <http://catalog.org/data> {
-  http://catalog.org/id/concept/some-concept a skos:Concept; #NEW
-    rdfs:label "Some concept"@en;                            #NEW
+  <http://catalog.org/id/concept/some-concept> a skos:Concept; #NEW
+    rdfs:label "Some concept"@en;                              #NEW
   .
-  http://catalog.org/doc/2019-01-01T12:00:00.000/some-concept a prov:Entity; #NEW
-    prov:generatedAtTime "2019-01-01T12:00:00.000"^^xsd:dateTime;            #NEW
-    adms:status admsstatus:UnderDevelopment;                                 #NEW
-    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>       #NEW
+  <http://catalog.org/doc/2019-01-01T12:00:00.000/some-concept> a prov:Entity; #NEW
+    prov:generatedAtTime "2019-01-01T12:00:00.000"^^xsd:dateTime;              #NEW
+    adms:status admsstatus:UnderDevelopment;                                   #NEW
+    prov:isPrimaryTopicOf <http://catalog.org/id/concept/some-concept>         #NEW
   .
 }
 ```
 
-#### Updating an existing resource
+#### T02 Simple: updating an existing resource
 Change the name and adding a comment at system time 2019-01-02T12:00:00.000. An existing resource is considered to be changed "as a whole": all statements are send, even those that are not changed.
 
 ```
@@ -104,7 +104,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Deleting a resource
+#### T03 Simple: deleting a resource
 Deleting of "Some concept" at system time 2019-01-03T12:00:00.000.
 
 ```
@@ -132,7 +132,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Updating a resource after it was deleted
+#### T04 Simple: updating a resource after it was deleted
 We want to "undelete" the catalog record for the resource at system time 2019-01-04T12:00:00.000.
 
 ```
@@ -172,7 +172,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Publishing a resource
+#### T05 Simple: publishing a resource
 At system time 2019-01-04T12:00:00.000 we have three catalog records about the same topic. Only the most recent catalog record should be available for publication, as the other catalog records are invalidated at some point in time.
 
 We want to publish the most recent catalog record at system time 2019-01-05T12:00:00.000
@@ -210,7 +210,7 @@ STORAGE RESULT:
 
 Mark that the publication of a catalog record **doesn't** result in the creation of a new catalog record. Only the most recent catalog record is updated. This also means that the publication moment isn't recorded. In the simple history model, a `dct:issued` statement could be added to the catalog record. Another option is adopting the transaction history model, described below.
 
-#### Updating a catalog record after it is published
+#### T06 Simple: updating a catalog record after it is published
 By updating a catalog record after it is published, the new catalog record is automatically published. This means that the most recent catalog record gets the status completed. At system time 2019-01-06T12:00:00.000 we update the most recent catalog record: we add a reference to some other concept.
 
 ```
@@ -268,7 +268,7 @@ In the following sections, we will "replay" the six transaction steps from the s
 
 Statements in the transaction graph are **never** updated or deleted. In the following sections, only the statements that were added tot the transaction graph are mentioned.
 
-#### Creating a resource
+#### T01 Creating a resource
 Creating "Some concept", a `skos:Concept` at system time 2019-01-01T12:00:00.000
 
 ```
@@ -292,7 +292,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Updating an existing resource
+#### T02 Updating an existing resource
 Change the name and adding a comment at system time 2019-01-02T12:00:00.000. An existing resource is considered to be changed "as a whole": all statements are send, even those that are not changed.
 
 ```
@@ -322,7 +322,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Deleting a resource
+#### T03 Deleting a resource
 Deleting of "Some concept" at system time 2019-01-03T12:00:00.000.
 
 ```
@@ -336,7 +336,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Updating a resource after it was deleted
+#### T04 Updating a resource after it was deleted
 We want to "undelete" the catalog record for the resource at system time 2019-01-04T12:00:00.000.
 
 ```
@@ -363,7 +363,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Publishing a resource
+#### T05 Publishing a resource
 At system time 2019-01-04T12:00:00.000 we have three catalog records about the same topic. Only the most recent catalog record should be available for publication, as the other catalog records are invalidated at some point in time.
 
 We want to publish the most recent catalog record at system time 2019-01-05T12:00:00.000
@@ -379,7 +379,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Updating a catalog record after it is published
+#### T06 Updating a catalog record after it is published
 By updating a catalog record after it is published, the new catalog record gets the status under development. This means that the most recent catalog record is not published. However, we can still retrieve the most recently published catalog record. This catalog record is stored in the named graph <http://catalog.org/data/transaction/2019-01-04T12:00:00.000>. The published catalog record remains the same and is not invalidated or withdrawn as is the case in the simple system history model. At system time 2019-01-06T12:00:00.000 we update the most recent catalog record: we add a reference to some other concept.
 
 The main storage graph <http://catalog.org/data> will in this case differ from the main storage graph in the simple system history model. The new graph is depicted in the example below.
@@ -480,7 +480,7 @@ RESPONSE
 .
 ```
 
-### Publishing a resource that has been published before
+### T07 Publishing a resource that has been published before
 Publishing a resource for the first time, only changes the catalog record that is published. In the simple system history model, you can't publish a resource for a second time: the catalog record remains published. In the transaction system history model you can publish a resource for a second time. After publishing the new catalog record, the old published record will get the status `adms:Withdrawn` and a `prov:invalidatedAtTime`.
 
 The value for `prov:invalidatedAtTime` is always the system time. This means that the `prov:invalidatedAtTime` for the first published catalog record is actually after the `prov:generatedAtTime` of the second published catalog record. This indicates that in this time period, two versions of a catalog record exist.
@@ -590,7 +590,7 @@ Marking a catalog record as valid will result in a couple of actions:
 ### API for a validity history model
 A validity history model implies a transaction model, it also includes system history.
 
-#### Mark as valid
+#### T08 Mark as valid
 Making the most recent catalog record valid from december first, 2018 at system time 2019-01-08T12:00:00.000. Mark that the validity of the catalog record actually is before it was initially created. This is quite common. The oposite can also occur.
 
 ```
@@ -642,7 +642,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Updating a catalog record after it was marked valid
+#### T09 Updating a catalog record after it was marked valid
 This is actually the same as updating a catalog record after it was completed. We add a dutch label to the resource at system time 2019-01-09T12:00:00.000. We also delete the `rdfs:seeAlso` statement.
 
 ```
@@ -713,7 +713,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Publishing a catalog record, with a valid catalog record already available
+#### T10 Publishing a catalog record, with a valid catalog record already available
 In the case of the transaction system history model, the second publishing of a catalog record results in the withdrawal of the first published catalog record. In the case of the valid history model, this will **only** happen when such a published catalog record has not yet made valid: valid catalog records **cannot** been withdrawn, they can only made invalid by making some other catalog record valid in the same period.
 
 At system time 2019-01-10T12:00:00.000 we publish the most recent catalog record:
@@ -771,7 +771,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Updating a catalog record after it was marked valid and another was published
+#### T11 Updating a catalog record after it was marked valid and another was published
 To have full understanding about the complexity, we update the catalog record again: we delete the dutch label at system time 2019-01-11T12:00:00.000:
 
 ```
@@ -845,7 +845,7 @@ STORAGE RESULT:
 }
 ```
 
-#### Marking the most recent catalog record valid
+#### T12 Marking the most recent catalog record valid
 At system time 2019-01-11T12:00:00.000 we have two catalog records that could be marked valid: one has status "Completed" and one has status "UnderDevelopment". As the `markedvalid` API will by default use the most recent catalog record, only one with status "UnderDevelopment" will be used. You will need a filter to mark the one with status "Completed" (`?status=Completed`). We will mark the most recent catalog record as valid, because this is the most complex situation, at system time 2019-01-12T12:00:00.000:
 
 ```

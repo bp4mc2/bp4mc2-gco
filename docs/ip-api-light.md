@@ -30,8 +30,8 @@ Onderstaande tabel geeft aan hoe deze API in elkaar zit.
 |/model/beschrijving|Beschrijving van het model van het IP|`wdrs:describedBy/dct:description`|rdfs:Literal|
 |/service/|Endpoint type (automatisch)|`^dcat:servesDataset/rdf:type = dcat:DataService`|owl:Class|
 |/service/|Endpoint soort (automatisch)|`^dcat:servesDataset/dct:type = catalogus:RESTAPI`|skos:Concept|
-|/service/|endpointURL|URL voor primaire endpoint van dit IP|`^dcat:servesDataset/endpointURL`|rdfs:Resource|
-|/service/|endpointDescription|URL van de beschrijving van dit endpoint (bv OAS)|`^dcat:servesDataset/endpointDescription`|rdfs:Resource|
+|/service/endpointURL|endpointURL|URL voor primaire endpoint van dit IP|`^dcat:servesDataset/endpointURL`|rdfs:Resource|
+|/service/endpointBeschrijving|endpointDescription|URL van de beschrijving van dit endpoint (bv OAS)|`^dcat:servesDataset/endpointDescription`|rdfs:Resource|
 |/kwaliteit/|Type kwaliteitsannotatie (automatisch)|`dqv:hasQualityAnnotation/rdf:type = dqv:QualityAnnotation`|owl:Class|
 |/kwaliteit/|Kwaliteitsannotatie-motivatie (automatisch)|`dqv:hasQualityAnnotation/oa:motivatedBy = dqv:qualityAssessment`|oa:Motivation|
 |/kwaliteit/|Kwaliteitsannotatie-dimensie (automatisch)|`dqv:hasQualityAnnotation/dqv:inDimension`|dqv:Dimension|

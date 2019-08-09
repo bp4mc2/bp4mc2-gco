@@ -41,7 +41,7 @@ Onderstaande tabel geeft aan hoe deze API in elkaar zit.
 |/kwaliteit/compliance|Compliance van het IP|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Compliance]/oa:hasBodyValue`|rdfs:Literal|
 |/kwaliteit/consistentie|Mate van consistentie|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Consistentie]/oa:hasBodyValue`|rdfs:Literal|
 |/kwaliteit/nauwkeurigheid|Mate van nauwkeurigheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Nauwkeurigheid]/oa:hasBodyValue`|rdfs:Literal|
-|/kwaliteit/pausibiliteit|Mate van pausibiliteit|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Pausibliteit]/oa:hasBodyValue`|rdfs:Literal|
+|/kwaliteit/plausibiliteit|Mate van plausibiliteit|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Plausibiliteit]/oa:hasBodyValue`|rdfs:Literal|
 |/kwaliteit/precisie|Mate van precisie|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Precisie]/oa:hasBodyValue`|rdfs:Literal|
 |/kwaliteit/traceerbaarheid|Mate van traceerbaarheid|`dqv:hasQualityAnnotation[dqv:inDimension=dimensie:Traceerbaarheid]/oa:hasBodyValue`|rdfs:Literal|
 

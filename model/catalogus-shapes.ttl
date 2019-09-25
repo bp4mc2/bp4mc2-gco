@@ -21,9 +21,9 @@
 @prefix sh: <http://www.w3.org/ns/shacl#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
-@prefix catalogus: <http://catalogus.omgevingswet.overheid.nl/def/catalogus/>.
-@prefix catalogusbegrip: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/concept/>.
-@prefix dimensie: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/dimensie/>.
+@prefix catalogus: <http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#>.
+@prefix catalogusbegrip: <http://stelselcatalogus.omgevingswet.overheid.nl/catalogus/id/concept/>.
+@prefix dimensie: <http://stelselcatalogus.omgevingswet.overheid.nl/catalogus/id/dimensie/>.
 
 #
 # Annotations

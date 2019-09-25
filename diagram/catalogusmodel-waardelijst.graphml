@@ -15,7 +15,7 @@
   <key for="edge" id="d11" yfiles.type="edgegraphics"/>
   <graph edgedefault="directed" id="G">
     <node id="n0">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Asset]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Asset]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -35,7 +35,7 @@ dct:description (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:
       </data>
     </node>
     <node id="n1">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/AssetType]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#AssetType]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -52,7 +52,7 @@ dct:description (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:
       </data>
     </node>
     <node id="n2">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Organization]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Organization]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -71,7 +71,7 @@ skos:prefLabel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:L
       </data>
     </node>
     <node id="n3">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/WaardelijstAsset]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#WaardelijstAsset]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -87,7 +87,7 @@ skos:prefLabel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:L
       </data>
     </node>
     <node id="n4">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/WaardelijstAssetVersie]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#WaardelijstAssetVersie]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -105,8 +105,8 @@ dct:type = Waardelijst (adms:Asset) [1,1]<y:LabelModel><y:ErdAttributesNodeLabel
       </data>
     </node>
     <edge id="e0" source="n0" target="n1">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Asset]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/AssetType]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Asset]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#AssetType]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/dc/terms/type]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -120,8 +120,8 @@ dct:type = Waardelijst (adms:Asset) [1,1]<y:LabelModel><y:ErdAttributesNodeLabel
       </data>
     </edge>
     <edge id="e1" source="n0" target="n2">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Asset]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Organization]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Asset]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Organization]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/dc/terms/publisher]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -135,8 +135,8 @@ dct:type = Waardelijst (adms:Asset) [1,1]<y:LabelModel><y:ErdAttributesNodeLabel
       </data>
     </edge>
     <edge id="e2" source="n3" target="n0">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/WaardelijstAsset]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Asset]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#WaardelijstAsset]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Asset]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/1999/02/22-rdf-syntax-ns#type]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -149,8 +149,8 @@ dct:type = Waardelijst (adms:Asset) [1,1]<y:LabelModel><y:ErdAttributesNodeLabel
       </data>
     </edge>
     <edge id="e3" source="n4" target="n0">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/WaardelijstAssetVersie]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Asset]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#WaardelijstAssetVersie]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Asset]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/1999/02/22-rdf-syntax-ns#type]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -163,8 +163,8 @@ dct:type = Waardelijst (adms:Asset) [1,1]<y:LabelModel><y:ErdAttributesNodeLabel
       </data>
     </edge>
     <edge id="e4" source="n4" target="n3">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/WaardelijstAssetVersie]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/WaardelijstAsset]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#WaardelijstAssetVersie]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#WaardelijstAsset]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/dc/terms/isVersionOf]]></data>
       <data key="d10"/>
       <data key="d11">

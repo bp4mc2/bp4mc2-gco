@@ -15,7 +15,7 @@
   <key for="edge" id="d11" yfiles.type="edgegraphics"/>
   <graph edgedefault="directed" id="G">
     <node id="n0">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Entity]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Entity]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -34,7 +34,7 @@ prov:invalidatedAtTime (dateTime) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelMo
       </data>
     </node>
     <node id="n1">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Organization]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Organization]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -53,7 +53,7 @@ skos:prefLabel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:L
       </data>
     </node>
     <node id="n2">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Period]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Period]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -70,7 +70,7 @@ dcmiperiod:end (date) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:Lab
       </data>
     </node>
     <node id="n3">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Resource]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Resource]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -93,8 +93,8 @@ dcmiperiod:end (date) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:Lab
       </data>
     </node>
     <edge id="e0" source="n0" target="n0">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Entity]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Entity]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Entity]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Entity]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/ns/prov#wasRevisionOf]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -112,8 +112,8 @@ dcmiperiod:end (date) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:Lab
       </data>
     </edge>
     <edge id="e1" source="n0" target="n2">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Entity]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Period]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Entity]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Period]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/dc/terms/temporal]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -127,8 +127,8 @@ dcmiperiod:end (date) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:Lab
       </data>
     </edge>
     <edge id="e2" source="n0" target="n1">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Entity]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Organization]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Entity]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Organization]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/ns/prov#wasAttributedTo]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -142,8 +142,8 @@ dcmiperiod:end (date) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:Lab
       </data>
     </edge>
     <edge id="e3" source="n3" target="n0">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Resource]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Entity]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Resource]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Entity]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://xmlns.com/foaf/0.1/isPrimaryTopicOf]]></data>
       <data key="d10"/>
       <data key="d11">

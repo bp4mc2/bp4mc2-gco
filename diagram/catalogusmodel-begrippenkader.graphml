@@ -15,7 +15,7 @@
   <key for="edge" id="d11" yfiles.type="edgegraphics"/>
   <graph edgedefault="directed" id="G">
     <node id="n0">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/BibliographicResource]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#BibliographicResource]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -32,7 +32,7 @@ titel (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel
       </data>
     </node>
     <node id="n1">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Collection]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Collection]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -50,7 +50,7 @@ voorkeursterm (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:La
       </data>
     </node>
     <node id="n2">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -76,7 +76,7 @@ voorkeursterm (string) [1,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:La
       </data>
     </node>
     <node id="n3">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ConceptScheme]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ConceptScheme]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -94,7 +94,7 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </node>
     <node id="n4">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ExternConcept]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -117,7 +117,7 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </node>
     <node id="n5">
-      <data key="d3" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
+      <data key="d3" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#GerelateerdConcept]]></data>
       <data key="d4"/>
       <data key="d5">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -140,8 +140,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </node>
     <edge id="e0" source="n1" target="n3">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Collection]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ConceptScheme]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Collection]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ConceptScheme]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#inScheme]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -155,8 +155,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e1" source="n1" target="n2">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Collection]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Collection]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#member]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -170,8 +170,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e2" source="n2" target="n4">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#mappingRelation]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -185,8 +185,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e3" source="n2" target="n5">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#related]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -200,8 +200,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e4" source="n2" target="n4">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#broadMatch]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -215,8 +215,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e5" source="n2" target="n4">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#exactMatch]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -230,8 +230,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e6" source="n2" target="n4">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#narrowMatch]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -245,8 +245,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e7" source="n2" target="n5">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/iso25964/skos-thes#broaderPartitive]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -260,8 +260,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e8" source="n2" target="n4">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#closeMatch]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -275,8 +275,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e9" source="n2" target="n4">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ExternConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#relatedMatch]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -290,8 +290,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e10" source="n2" target="n5">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/iso25964/skos-thes#narrowerGeneric]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -305,8 +305,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e11" source="n2" target="n5">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/iso25964/skos-thes#narrowerPartitive]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -320,8 +320,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e12" source="n2" target="n3">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ConceptScheme]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ConceptScheme]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#inScheme]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -335,8 +335,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e13" source="n2" target="n0">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/BibliographicResource]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#BibliographicResource]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/dc/terms/source]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -350,8 +350,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e14" source="n2" target="n5">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/2004/02/skos/core#semanticRelation]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -365,8 +365,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e15" source="n2" target="n5">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#GerelateerdConcept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://purl.org/iso25964/skos-thes#broaderGeneric]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -380,8 +380,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e16" source="n4" target="n2">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/ExternConcept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#ExternConcept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/1999/02/22-rdf-syntax-ns#type]]></data>
       <data key="d10"/>
       <data key="d11">
@@ -397,8 +397,8 @@ uitleg (string) [0,1]<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelMode
       </data>
     </edge>
     <edge id="e17" source="n5" target="n2">
-      <data key="d7" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/GerelateerdConcept]]></data>
-      <data key="d8" xml:space="preserve"><![CDATA[http://catalogus.omgevingswet.overheid.nl/def/catalogus/Concept]]></data>
+      <data key="d7" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#GerelateerdConcept]]></data>
+      <data key="d8" xml:space="preserve"><![CDATA[http://stelselcatalogus.omgevingswet.overheid.nl/def/catalogus#Concept]]></data>
       <data key="d9" xml:space="preserve"><![CDATA[http://www.w3.org/1999/02/22-rdf-syntax-ns#type]]></data>
       <data key="d10"/>
       <data key="d11">

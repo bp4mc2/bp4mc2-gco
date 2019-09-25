@@ -4,9 +4,9 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
-@prefix conceptschema: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/conceptschema/>.
-@prefix catalogusbegrip: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/concept/>.
-@prefix cataloguscollectie: <http://catalogus.omgevingswet.overheid.nl/catalogus/id/collectie/>.
+@prefix conceptschema: <http://stelselcatalogus.omgevingswet.overheid.nl/catalogus/id/conceptschema/>.
+@prefix catalogusbegrip: <http://stelselcatalogus.omgevingswet.overheid.nl/catalogus/id/concept/>.
+@prefix cataloguscollectie: <http://stelselcatalogus.omgevingswet.overheid.nl/catalogus/id/collectie/>.
 
 #
 # Conceptschema

@@ -53,20 +53,20 @@ De volgende terminologie wordt gehanteerd voor eigenschappen:
 | [preferred label](http://www.w3.org/2004/02/skos/core#prefLabel) | voorkeursterm | Term | | |
 | [alternative label](http://www.w3.org/2004/02/skos/core#altLabel) | alternatieve term | Synoniemen | | |
 | [comment](http://www.w3.org/2000/01/rdf-schema#comment) | uitleg | Uitleg | | |
-| [definition](http://www.w3.org/2004/02/skos/core#definition) | definitie | Definitie | | |
-| [http://www.w3.org/2004/02/skos/core#scopeNote](scope note) | toelichting | Toelichting | | |
-| [http://purl.org/dc/elements/1.1/source](source) | tekstbron | Tekstbron | | |
-| [http://purl.org/dc/terms/source](source) | bron | Bron | | |
-| [http://www.w3.org/2004/02/skos/core#inScheme](is in scheme) | behoort tot | Domein | | |
-| [http://purl.org/iso25964/skos-thes#broaderGeneric](broader term (generic)) | specialisatie van | Is specialisatie van | | |
-| [http://purl.org/iso25964/skos-thes#narrowerGeneric](narrower term (generic)) | generalisatie van | Is generalisatie van | | |
-| [http://purl.org/iso25964/skos-thes#broaderPartitive](broader term (partitive)) | onderdeel van | Is onderdeel van | | |
-| [http://purl.org/iso25964/skos-thes#narrowerPartitive](narrower term (partitive)) | bestaat uit | Bestaat uit | | |
-| [http://www.w3.org/2004/02/skos/core#related](has related) | gerelateerd | Gerelateerd | | |
-| [http://www.w3.org/2004/02/skos/core#semanticRelation](is in semantic relation with) | semantische relatie | heeft betrekking op | | |
-| [http://www.w3.org/2004/02/skos/core#closeMatch](has close match) | vrijwel overeenkomstig | Is ongeveer hetzelfde als (extern concept) | | |
-| [http://www.w3.org/2004/02/skos/core#exactMatch](has exact match) | exact overeenkomstig | is hetzelfde als (extern concept) | | |
-| [http://www.w3.org/2004/02/skos/core#relatedMatch](has related match) | overeenkomstig verwant | zie ook (extern concept) | | |
-| [http://www.w3.org/2004/02/skos/core#broadMatch](has broader match) | overeenkomstig generieker | is breder dan (extern concept) | | |
-| [http://www.w3.org/2004/02/skos/core#narrowMatch](has narrower match) | overeenkomstig specifieker | Is enger dan (in ander schema) | | |
-| [http://xmlns.com/foaf/0.1/isPrimaryTopicOf](is primary topic of) | metadata | Metadata | | |
+| [http://www.w3.org/2004/02/skos/core#definition](definition) | definitie | Definitie | | |
+| [scope note](http://www.w3.org/2004/02/skos/core#scopeNote) | toelichting | Toelichting | | |
+| [source (DC)](http://purl.org/dc/elements/1.1/source) | tekstbron | Tekstbron | | |
+| [source (DCT)](http://purl.org/dc/terms/source) | bron | Bron | | |
+| [is in scheme](http://www.w3.org/2004/02/skos/core#inScheme) | behoort tot | Domein | | |
+| [broader term (generic)](http://purl.org/iso25964/skos-thes#broaderGeneric) | specialisatie van | Is specialisatie van | | |
+| [narrower term (generic)](http://purl.org/iso25964/skos-thes#narrowerGeneric) | generalisatie van | Is generalisatie van | | |
+| [broader term (partitive)](http://purl.org/iso25964/skos-thes#broaderPartitive) | onderdeel van | Is onderdeel van | | |
+| [narrower term (partitive)](http://purl.org/iso25964/skos-thes#narrowerPartitive) | bestaat uit | Bestaat uit | | |
+| [has related](http://www.w3.org/2004/02/skos/core#related) | gerelateerd | Gerelateerd | | |
+| [is in semantic relation with](http://www.w3.org/2004/02/skos/core#semanticRelation) | semantische relatie | heeft betrekking op | | |
+| [has close match](http://www.w3.org/2004/02/skos/core#closeMatch) | vrijwel overeenkomstig | Is ongeveer hetzelfde als (extern concept) | | |
+| [has exact match](http://www.w3.org/2004/02/skos/core#exactMatch) | exact overeenkomstig | is hetzelfde als (extern concept) | | |
+| [has related match](http://www.w3.org/2004/02/skos/core#relatedMatch) | overeenkomstig verwant | zie ook (extern concept) | | |
+| [has broader match](http://www.w3.org/2004/02/skos/core#broadMatch) | overeenkomstig generieker | is breder dan (extern concept) | | |
+| [has narrower match](http://www.w3.org/2004/02/skos/core#narrowMatch) | overeenkomstig specifieker | Is enger dan (in ander schema) | | |
+| [is primary topic of](http://xmlns.com/foaf/0.1/isPrimaryTopicOf) | metadata | Metadata | | |

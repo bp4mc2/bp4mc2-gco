@@ -12,9 +12,9 @@ De volgende terminologie wordt gehanteerd voor klassen:
 
 |Term (en) in de standaard|Term (nl) in het model|Term in de userinterface|Term in de API|Reden verschil|
 |-------------------------|----------------------|------------------------|--------------|--------------|
-| [Resource](http://www.w3.org/2000/01/rdf-schema#Resource) | Object | | | Abstracte term, alleen in het model |
+| [Resource](http://www.w3.org/2000/01/rdf-schema#Resource) | Object | | | Abstracte klasse, alleen in het model |
 | [Collection](http://www.w3.org/2004/02/skos/core#Collection) | Collectie | | | Collecties worden nu nog niet ondersteund in de UI of API |
-| [Concept](http://www.w3.org/2004/02/skos/core#Concept) | Concept | Begrip, Concept | | Op de meeste plaatsen wordt in de UI "Begrip" gebruikt, behalve in "Over de catalogus" |
+| [Concept](http://www.w3.org/2004/02/skos/core#Concept) | Concept | Begrip, Concept | concept | Op de meeste plaatsen wordt in de UI "Begrip" gebruikt, behalve in "Over de catalogus" |
 | [Concept scheme](http://www.w3.org/2004/02/skos/core#ConceptScheme) | Conceptschema | Domein | |
 | [Catalog](http://www.w3.org/ns/dcat#Catalog) | Catalogus | | | |
 | [Dataset](http://www.w3.org/ns/dcat#Dataset) | Dataset | | | Abstracte term, alleen in het model |
@@ -53,7 +53,7 @@ De volgende terminologie wordt gehanteerd voor eigenschappen:
 | [preferred label](http://www.w3.org/2004/02/skos/core#prefLabel) | voorkeursterm | Term | term | |
 | [alternative label](http://www.w3.org/2004/02/skos/core#altLabel) | alternatieve term | Synoniemen | synoniem | |
 | [comment](http://www.w3.org/2000/01/rdf-schema#comment) | uitleg | Uitleg | uitleg | |
-| [http://www.w3.org/2004/02/skos/core#definition](definition) | definitie | Definitie | definitie | |
+| [definition](http://www.w3.org/2004/02/skos/core#definition) | definitie | Definitie | definitie | |
 | [scope note](http://www.w3.org/2004/02/skos/core#scopeNote) | toelichting | Toelichting | toelichting | |
 | [source (DC)](http://purl.org/dc/elements/1.1/source) | tekstbron | Tekstbron | | |
 | [source (DCT)](http://purl.org/dc/terms/source) | bron | Bron | bron | |
@@ -74,3 +74,5 @@ De volgende terminologie wordt gehanteerd voor eigenschappen:
 | [notation](http://www.w3.org/2004/02/skos/core#notation) | code | | notitie | Alleen in de API beschikbaar |
 | [keyword](http://www.w3.org/ns/dcat#keyword) | | | sleutelwoord | Alleen in de API beschikbaar (foutief): keyword is geen eigenschap van een concept, maar van een dataset |
 | [hidden label](http://www.w3.org/2004/02/skos/core#hiddenLabel) | zoekterm | | verborgenZoekterm | Alleen in de API beschikbaar |
+| [editorial note](http://www.w3.org/2004/02/skos/core#editorialNote) | rationale | | | Alleen in het model aanwezig, ontbreekt in UI en API |
+| [is in mapping relation with](http://www.w3.org/2004/02/skos/core#mappingRelation) | harmonisatierelatie | | | Abstracte eigenschap, alleen in het model |

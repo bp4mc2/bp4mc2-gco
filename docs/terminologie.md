@@ -48,25 +48,29 @@ De volgende terminologie wordt gehanteerd voor eigenschappen:
 
 |Term (en) in de standaard|Term (nl) in het model|Term in de userinterface|Term in de API|Reden verschil|
 |-------------------------|----------------------|------------------------|--------------|--------------|
-| [label](http://www.w3.org/2000/01/rdf-schema#label) | label | Label | | |
-| [type](http://www.w3.org/1999/02/22-rdf-syntax-ns#type) | type | Type | | |
-| [preferred label](http://www.w3.org/2004/02/skos/core#prefLabel) | voorkeursterm | Term | | |
-| [alternative label](http://www.w3.org/2004/02/skos/core#altLabel) | alternatieve term | Synoniemen | | |
-| [comment](http://www.w3.org/2000/01/rdf-schema#comment) | uitleg | Uitleg | | |
-| [http://www.w3.org/2004/02/skos/core#definition](definition) | definitie | Definitie | | |
-| [scope note](http://www.w3.org/2004/02/skos/core#scopeNote) | toelichting | Toelichting | | |
+| [label](http://www.w3.org/2000/01/rdf-schema#label) | label | Label | naam | |
+| [type](http://www.w3.org/1999/02/22-rdf-syntax-ns#type) | type | Type | type | |
+| [preferred label](http://www.w3.org/2004/02/skos/core#prefLabel) | voorkeursterm | Term | term | |
+| [alternative label](http://www.w3.org/2004/02/skos/core#altLabel) | alternatieve term | Synoniemen | synoniem | |
+| [comment](http://www.w3.org/2000/01/rdf-schema#comment) | uitleg | Uitleg | uitleg | |
+| [http://www.w3.org/2004/02/skos/core#definition](definition) | definitie | Definitie | definitie | |
+| [scope note](http://www.w3.org/2004/02/skos/core#scopeNote) | toelichting | Toelichting | toelichting | |
 | [source (DC)](http://purl.org/dc/elements/1.1/source) | tekstbron | Tekstbron | | |
-| [source (DCT)](http://purl.org/dc/terms/source) | bron | Bron | | |
-| [is in scheme](http://www.w3.org/2004/02/skos/core#inScheme) | behoort tot | Domein | | |
-| [broader term (generic)](http://purl.org/iso25964/skos-thes#broaderGeneric) | specialisatie van | Is specialisatie van | | |
-| [narrower term (generic)](http://purl.org/iso25964/skos-thes#narrowerGeneric) | generalisatie van | Is generalisatie van | | |
-| [broader term (partitive)](http://purl.org/iso25964/skos-thes#broaderPartitive) | onderdeel van | Is onderdeel van | | |
-| [narrower term (partitive)](http://purl.org/iso25964/skos-thes#narrowerPartitive) | bestaat uit | Bestaat uit | | |
+| [source (DCT)](http://purl.org/dc/terms/source) | bron | Bron | bron | |
+| [is in scheme](http://www.w3.org/2004/02/skos/core#inScheme) | behoort tot | Domein | domein | |
+| [broader term (generic)](http://purl.org/iso25964/skos-thes#broaderGeneric) | specialisatie van | Is specialisatie van | isSpecialisatieVan | |
+| [narrower term (generic)](http://purl.org/iso25964/skos-thes#narrowerGeneric) | generalisatie van | Is generalisatie van | isGeneralisatieVan | |
+| [broader term (partitive)](http://purl.org/iso25964/skos-thes#broaderPartitive) | onderdeel van | Is onderdeel van | isOnderdeelVan | |
+| [narrower term (partitive)](http://purl.org/iso25964/skos-thes#narrowerPartitive) | bestaat uit | Bestaat uit | bestaatUit | |
 | [has related](http://www.w3.org/2004/02/skos/core#related) | gerelateerd | Gerelateerd | | |
-| [is in semantic relation with](http://www.w3.org/2004/02/skos/core#semanticRelation) | semantische relatie | heeft betrekking op | | |
-| [has close match](http://www.w3.org/2004/02/skos/core#closeMatch) | vrijwel overeenkomstig | Is ongeveer hetzelfde als (extern concept) | | |
-| [has exact match](http://www.w3.org/2004/02/skos/core#exactMatch) | exact overeenkomstig | is hetzelfde als (extern concept) | | |
-| [has related match](http://www.w3.org/2004/02/skos/core#relatedMatch) | overeenkomstig verwant | zie ook (extern concept) | | |
-| [has broader match](http://www.w3.org/2004/02/skos/core#broadMatch) | overeenkomstig generieker | is breder dan (extern concept) | | |
-| [has narrower match](http://www.w3.org/2004/02/skos/core#narrowMatch) | overeenkomstig specifieker | Is enger dan (in ander schema) | | |
-| [is primary topic of](http://xmlns.com/foaf/0.1/isPrimaryTopicOf) | metadata | Metadata | | |
+| [is in semantic relation with](http://www.w3.org/2004/02/skos/core#semanticRelation) | semantische relatie | heeft betrekking op | heeftBetrekkingOp | |
+| [has close match](http://www.w3.org/2004/02/skos/core#closeMatch) | vrijwel overeenkomstig | Is ongeveer hetzelfde als (extern concept) | isOngeveerHetzelfdeAls | |
+| [has exact match](http://www.w3.org/2004/02/skos/core#exactMatch) | exact overeenkomstig | is hetzelfde als (extern concept) | isHetzelfdeAls | |
+| [has related match](http://www.w3.org/2004/02/skos/core#relatedMatch) | overeenkomstig verwant | zie ook (extern concept) | zieOok | |
+| [has broader match](http://www.w3.org/2004/02/skos/core#broadMatch) | overeenkomstig generieker | is breder dan (extern concept) | isBrederDan | |
+| [has narrower match](http://www.w3.org/2004/02/skos/core#narrowMatch) | overeenkomstig specifieker | Is enger dan (in ander schema) | isEngerDan | |
+| [is primary topic of](http://xmlns.com/foaf/0.1/isPrimaryTopicOf) | metadata | Metadata | metadata | |
+| [depiction](http://xmlns.com/foaf/0.1/depiction) | verbeelding | | afbeelding | Alleen in de API beschikbaar |
+| [notation](http://www.w3.org/2004/02/skos/core#notation) | code | | notitie | Alleen in de API beschikbaar |
+| [keyword](http://www.w3.org/ns/dcat#keyword) | | | sleutelwoord | Alleen in de API beschikbaar (foutief): keyword is geen eigenschap van een concept, maar van een dataset |
+| [hidden label](http://www.w3.org/2004/02/skos/core#hiddenLabel) | zoekterm | | verborgenZoekterm | Alleen in de API beschikbaar |

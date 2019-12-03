@@ -12,16 +12,16 @@ De volgende terminologie wordt gehanteerd voor klassen:
 
 |Term (en) in de standaard|Term (nl) in het model|Term in de userinterface|Term in de API|Reden verschil|
 |-------------------------|----------------------|------------------------|--------------|--------------|
-| [http://www.w3.org/2000/01/rdf-schema#Resource](Resource) | Object | | | Abstracte term, alleen in het model |
-| [http://www.w3.org/2004/02/skos/core#Collection](Collection) | Collectie | | | Collecties worden nu nog niet ondersteund in de UI of API |
-| [http://www.w3.org/2004/02/skos/core#Concept](Concept) | Concept | Begrip, Concept | | Op de meeste plaatsen wordt in de UI "Begrip" gebruikt, behalve in "Over de catalogus" |
-| [http://www.w3.org/2004/02/skos/core#ConceptScheme](Concept scheme) | Conceptschema | Domein | |
-| [http://www.w3.org/ns/dcat#Catalog](Catalog) | Catalogus | | | |
-| [http://www.w3.org/ns/dcat#Dataset](Dataset) | Dataset | | | Abstracte term, alleen in het model |
-| [http://www.w3.org/ns/dcat#Distribution](Distribution) | | | |
-| [http://www.w3.org/ns/org#Organization](Organization) | | | |
-| [http://www.w3.org/ns/prov#Entity](Entity) | Voorkomen | | |
-| [http://www.w3.org/ns/prov#Person](Person) | Persoon | | |
+| [Resource](http://www.w3.org/2000/01/rdf-schema#Resource) | Object | | | Abstracte term, alleen in het model |
+| [Collection](http://www.w3.org/2004/02/skos/core#Collection) | Collectie | | | Collecties worden nu nog niet ondersteund in de UI of API |
+| [Concept](http://www.w3.org/2004/02/skos/core#Concept) | Concept | Begrip, Concept | | Op de meeste plaatsen wordt in de UI "Begrip" gebruikt, behalve in "Over de catalogus" |
+| [Concept scheme](http://www.w3.org/2004/02/skos/core#ConceptScheme) | Conceptschema | Domein | |
+| [Catalog](http://www.w3.org/ns/dcat#Catalog) | Catalogus | | | |
+| [Dataset](http://www.w3.org/ns/dcat#Dataset) | Dataset | | | Abstracte term, alleen in het model |
+| [Distribution](http://www.w3.org/ns/dcat#Distribution) | | | |
+| [Organization](http://www.w3.org/ns/org#Organization) | | | |
+| [Entity](http://www.w3.org/ns/prov#Entity) | Voorkomen | | |
+| [Person](http://www.w3.org/ns/prov#Person) | Persoon | | |
 
 ## Typering van datasets
 
@@ -48,12 +48,12 @@ De volgende terminologie wordt gehanteerd voor eigenschappen:
 
 |Term (en) in de standaard|Term (nl) in het model|Term in de userinterface|Term in de API|Reden verschil|
 |-------------------------|----------------------|------------------------|--------------|--------------|
-| [http://www.w3.org/2000/01/rdf-schema#label](label) | label | Label | | |
-| [http://www.w3.org/1999/02/22-rdf-syntax-ns#type](type) | type | Type | | |
-| [http://www.w3.org/2004/02/skos/core#prefLabel](preferred label) | voorkeursterm | Term | | |
-| [http://www.w3.org/2004/02/skos/core#altLabel](alternative label) | alternatieve term | Synoniemen | | |
-| [http://www.w3.org/2000/01/rdf-schema#comment](comment) | uitleg | Uitleg | | |
-| [http://www.w3.org/2004/02/skos/core#definition](definition) | definitie | Definitie | | |
+| [label](http://www.w3.org/2000/01/rdf-schema#label) | label | Label | | |
+| [type](http://www.w3.org/1999/02/22-rdf-syntax-ns#type) | type | Type | | |
+| [preferred label](http://www.w3.org/2004/02/skos/core#prefLabel) | voorkeursterm | Term | | |
+| [alternative label](http://www.w3.org/2004/02/skos/core#altLabel) | alternatieve term | Synoniemen | | |
+| [comment](http://www.w3.org/2000/01/rdf-schema#comment) | uitleg | Uitleg | | |
+| [definition](http://www.w3.org/2004/02/skos/core#definition) | definitie | Definitie | | |
 | [http://www.w3.org/2004/02/skos/core#scopeNote](scope note) | toelichting | Toelichting | | |
 | [http://purl.org/dc/elements/1.1/source](source) | tekstbron | Tekstbron | | |
 | [http://purl.org/dc/terms/source](source) | bron | Bron | | |

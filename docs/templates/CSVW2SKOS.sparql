@@ -1,0 +1,70 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX tab: <http://linkeddata.ordina.nl/excel2rdf/container/excel-upload#>
+CONSTRUCT {
+  ?begrip a skos:Concept;
+    rdfs:label ?label;
+    skos:inScheme ?conceptschema;
+    skos:definition ?definitie;
+    dc:source ?bron;
+    skos:scopeNote ?toelichting;
+    skos:editorialNote ?rationale;
+    skos:broader ?algemener;
+    skos:narrower ?specifieker
+  .
+  ?conceptschema a skos:ConceptScheme;
+    rdfs:label ?bklabel
+  .
+  ?collectie a skos:Collection;
+    rdfs:label ?clabel;
+    skos:member ?member
+  .
+}
+WHERE {
+  GRAPH <urn:csvw-data> {
+    {
+      ?row tab:Begrip ?label.
+      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)
+      OPTIONAL {?row tab:Definitie ?definitie}
+      OPTIONAL {?row tab:Bron ?bron}
+      OPTIONAL {?row tab:Toelichting ?toelichting}
+      OPTIONAL {?row tab:Rationale ?rationale}
+    }
+    UNION
+    {
+      ?row tab:Begrip ?label.
+      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)
+      ?row tab:Specialisatie_van ?alabel.
+      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?alabel," ","_"))) as ?algemener)
+    }
+    UNION
+    {
+      ?row tab:Begrip ?label.
+      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)
+      ?row tab:Generalisatie_van ?slabel.
+      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?slabel," ","_"))) as ?specifieker)
+    }
+    UNION
+    {
+      ?row tab:Begrip ?label.
+      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)
+      ?row tab:Gerelateerd_begrip ?glabel.
+      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?glabel," ","_"))) as ?gerelateerd)
+    }
+    UNION
+    {
+      ?row tab:Begrip ?label.
+      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)
+      ?row tab:Conceptschema ?bklabel.
+      BIND(iri(concat("http://domeinnaam/id/conceptschema/",replace(?bklabel," ","_"))) as ?conceptschema)
+    }
+    UNION
+    {
+      ?row tab:Begrip ?label.
+      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?member)
+      ?row tab:Collectie ?clabel.
+      BIND(iri(concat("http://domeinnaam/id/collectie/",replace(?clabel," ","_"))) as ?collectie)
+    }
+  }
+}

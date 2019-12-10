@@ -22,7 +22,7 @@ CONSTRUCT {
   .
 }
 WHERE {
-  GRAPH <urn:csvw-data> {
+  GRAPH <urn:dataset:csvw-data> {
     {
       ?row tab:Begrip ?label.
       BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)

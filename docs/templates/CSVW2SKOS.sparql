@@ -1,70 +1,120 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX skosthes: <http://purl.org/iso25964/skos-thes#>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX tab: <http://linkeddata.ordina.nl/excel2rdf/container/excel-upload#>
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX csvw: <http://www.w3.org/ns/csvw#>
 CONSTRUCT {
   ?begrip a skos:Concept;
     rdfs:label ?label;
+    skos:prefLabel ?term;
     skos:inScheme ?conceptschema;
     skos:definition ?definitie;
     dc:source ?bron;
     skos:scopeNote ?toelichting;
     skos:editorialNote ?rationale;
-    skos:broader ?algemener;
-    skos:narrower ?specifieker
+    skosthes:broaderGeneric ?algemener;
+    skosthes:narrowerGeneric ?specifieker
   .
   ?conceptschema a skos:ConceptScheme;
-    rdfs:label ?bklabel
+    rdfs:label ?cslabel;
+    dct:title ?cslabel;
+    skos:prefLabel ?csterm;
   .
   ?collectie a skos:Collection;
     rdfs:label ?clabel;
     skos:member ?member
   .
+  ?waardelijst a adms:Asset;
+    rdfs:label ?wlabel;
+    dct:title ?wlabel;
+    skos:prefLabel ?wterm;
+  .
+  ?begrip void:inDataset ?waardelijst.
+  ?waardelijst dct:isPartOf ?conceptschema.
 }
 WHERE {
   GRAPH <urn:dataset:csvw-data> {
     {
-      ?row tab:Begrip ?label.
-      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)
-      OPTIONAL {?row tab:Definitie ?definitie}
-      OPTIONAL {?row tab:Bron ?bron}
-      OPTIONAL {?row tab:Toelichting ?toelichting}
-      OPTIONAL {?row tab:Rationale ?rationale}
+      ?row csvw:primaryKey ?uri.
+      BIND (iri(?uri) as ?begrip).
+      BIND(replace(?uri,"^.*[/|#]([^/]+)$","$1") as ?term)
+      ?row csvw:describes ?subject.
+      ?subject tab:Begrip ?label.
+      OPTIONAL {?subject tab:Definitie ?definitie}
+      OPTIONAL {?subject tab:Bron ?bron}
+      OPTIONAL {?subject tab:Toelichting ?toelichting}
+      OPTIONAL {?subject tab:Rationale ?rationale}
     }
     UNION
     {
-      ?row tab:Begrip ?label.
-      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)
-      ?row tab:Specialisatie_van ?alabel.
-      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?alabel," ","_"))) as ?algemener)
+      ?row csvw:primaryKey ?uri.
+      BIND (iri(?uri) as ?begrip).
+      ?row csvw:describes ?subject.
+      ?subject tab:Specialisatie_van ?alabel.
+      ?subject tab:Conceptschema ?cslabel.
+      ?asubject tab:Begrip ?alabel.
+      ?asubject tab:Conceptschema ?cslabel.
+      ?arow csvw:describes ?asubject.
+      ?arow csvw:primaryKey ?auri.
+      BIND (iri(?auri) as ?algemener)
     }
     UNION
     {
-      ?row tab:Begrip ?label.
-      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)
-      ?row tab:Generalisatie_van ?slabel.
-      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?slabel," ","_"))) as ?specifieker)
+      ?row csvw:primaryKey ?uri.
+      BIND (iri(?uri) as ?begrip).
+      ?row csvw:describes ?subject.
+      ?subject tab:Generalisatie_van ?alabel.
+      ?subject tab:Conceptschema ?cslabel.
+      ?ssubject tab:Begrip ?slabel.
+      ?ssubject tab:Conceptschema ?cslabel.
+      ?srow csvw:describes ?ssubject.
+      ?srow csvw:primaryKey ?suri.
+      BIND (iri(?suri) as ?specifieker)
     }
     UNION
     {
-      ?row tab:Begrip ?label.
-      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)
-      ?row tab:Gerelateerd_begrip ?glabel.
-      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?glabel," ","_"))) as ?gerelateerd)
+      ?row csvw:primaryKey ?uri.
+      BIND (iri(?uri) as ?begrip).
+      ?row csvw:describes ?subject.
+      ?subject tab:Gerelateerd_begrip ?glabel.
+      ?subject tab:Conceptschema ?cslabel.
+      ?gsubject tab:Begrip ?slabel.
+      ?gsubject tab:Conceptschema ?cslabel.
+      ?grow csvw:describes ?gsubject.
+      ?grow csvw:primaryKey ?guri.
+      BIND (iri(?guri) as ?gerelateerd)
     }
     UNION
     {
-      ?row tab:Begrip ?label.
-      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?begrip)
-      ?row tab:Conceptschema ?bklabel.
-      BIND(iri(concat("http://domeinnaam/id/conceptschema/",replace(?bklabel," ","_"))) as ?conceptschema)
+      ?row csvw:primaryKey ?uri.
+      BIND (iri(?uri) as ?begrip).
+      ?row csvw:describes ?subject.
+      ?subject tab:Conceptschema ?cslabel.
+      BIND(replace(?cslabel," ","") as ?csterm)
+      BIND(iri(concat(replace(?uri,"^(.*//[^/]+)/.*","$1"),"/id/conceptschema/",replace(?cslabel," ",""))) as ?conceptschema)
     }
     UNION
     {
-      ?row tab:Begrip ?label.
-      BIND(iri(concat("http://domeinnaam/id/begrip/",replace(?label," ","_"))) as ?member)
-      ?row tab:Collectie ?clabel.
-      BIND(iri(concat("http://domeinnaam/id/collectie/",replace(?clabel," ","_"))) as ?collectie)
+      ?row csvw:primaryKey ?uri.
+      BIND (iri(?uri) as ?member).
+      ?row csvw:describes ?subject.
+      ?subject tab:Collectie ?clabel.
+      BIND(iri(concat(replace(?uri,"^(.*//[^/]+)/.*","$1"),"/id/collectie/",replace(?clabel," ",""))) as ?collectie)
+    }
+    UNION
+    {
+      ?row csvw:primaryKey ?uri.
+      BIND (iri(?uri) as ?begrip).
+      ?row csvw:describes ?subject.
+      ?subject tab:Waardelijst ?wlabel.
+      ?subject tab:Conceptschema ?cslabel.
+      BIND(iri(concat(replace(?uri,"^(.*//[^/]+)/.*","$1"),"/id/conceptschema/",replace(?cslabel," ",""))) as ?conceptschema)
+      BIND(replace(?wlabel," ","") as ?wterm)
+      BIND(iri(concat(replace(?uri,"^(.*//[^/]+)/.*","$1"),"/id/waardelijst/",replace(?wlabel," ",""))) as ?waardelijst)
     }
   }
 }

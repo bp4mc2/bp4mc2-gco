@@ -1,0 +1,32 @@
+{
+  "@context": {
+    "type": {"@id": "@type", "@container": "@set"},
+    "naam" : {"@id": "http://www.w3.org/2000/01/rdf-schema#label", "@container": "@set"},
+    "term" : {"@id": "http://www.w3.org/2004/02/skos/core#prefLabel"},
+    "domein" : {"@id": "http://www.w3.org/2004/02/skos/core#inScheme", "@type": "@id"},
+    "definitie" : "http://www.w3.org/2004/02/skos/core#definition",
+    "toelichting" : "http://www.w3.org/2004/02/skos/core#scopeNote",
+    "isSpecialisatieVan" : {"@id": "http://purl.org/iso25964/skos-thes#broaderGeneric", "@type": "@id", "@container": "@set"},
+    "waarden" : {"@reverse": "http://rdfs.org/ns/void#inDataset", "@type": "@id"},
+    "conceptschema" : {"@id": "http://purl.org/dc/terms/isPartOf", "@type": "@id"}
+  },
+  "@explicit": "true",
+  "@type": "http://www.w3.org/ns/adms#Asset",
+  "naam": {},
+  "term": {},
+  "waarden" : {
+    "@explicit": "true",
+    "@type": "http://www.w3.org/2004/02/skos/core#Concept",
+    "naam": {},
+    "term": {},
+    "definitie": {},
+    "toelichting": {},
+    "domein": {"@embed":"@never"},
+    "isSpecialisatieVan": {}
+  },
+  "conceptschema" : {
+    "@explicit": "true",
+    "naam": {},
+    "term": {}
+  }
+}
